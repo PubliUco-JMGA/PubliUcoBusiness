@@ -6,6 +6,11 @@ import co.edu.uco.publiuco.dto.ObservacionRevisionDTO;
 import co.edu.uco.publiuco.entities.ObservacionRevisionEntity;
 
 public final class ObservacionRevisionAssembler implements Assembler<ObservacionRevisionDomain, ObservacionRevisionDTO, ObservacionRevisionEntity> {
+    public static final ObservacionRevisionAssembler INSTANCE = new ObservacionRevisionAssembler();
+    public static ObservacionRevisionAssembler getInstance() { return INSTANCE; }
+    private ObservacionRevisionAssembler(){
+        super();
+    }
     @Override
     public ObservacionRevisionDTO toDTOFromDomain(ObservacionRevisionDomain domain) {
         return ObservacionRevisionDTO.create().setIdentificador(domain.getIdentificador()).setObservacion(domain.getObservacion())

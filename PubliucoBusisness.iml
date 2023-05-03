@@ -15,5 +15,9 @@
     <orderEntry type="module" module-name="PubliucoDTO" />
     <orderEntry type="module" module-name="PubliucoData" />
     <orderEntry type="module" module-name="PubliucoCrossCutting" />
+    <orderEntry type="module" module-name="PubliucoEntities" />
+    <orderEntry type="module" module-name="PubliucoDTO" />
+    <orderEntry type="module" module-name="PubliucoData" />
+    <orderEntry type="module" module-name="PubliucoCrossCutting" />
   </component>
 </module>
