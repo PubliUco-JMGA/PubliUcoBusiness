@@ -5,6 +5,9 @@ import co.edu.uco.publiuco.business.domain.EstadoDomain;
 import co.edu.uco.publiuco.dto.EstadoDTO;
 import co.edu.uco.publiuco.entities.EstadoEntity;
 
+import java.util.ArrayList;
+import java.util.List;
+
 
 public final class EstadoAssembler implements Assembler<EstadoDomain, EstadoDTO, EstadoEntity> {
     public static final EstadoAssembler INSTANCE = new EstadoAssembler();
@@ -31,5 +34,10 @@ public final class EstadoAssembler implements Assembler<EstadoDomain, EstadoDTO,
     @Override
     public EstadoDomain toDomainFromEntity(EstadoEntity entity) {
         return new EstadoDomain(entity.getIdentificador(), entity.getNombre(), TipoEstadoAssembler.getInstance().toDomainFromEntity(entity.getTipoEstado()));
+    }
+
+    @Override
+    public final List<EstadoDomain> toDomainFromEntityList(List<EstadoEntity> entityList) {
+        return entityList.stream().map(entity -> toDomainFromEntity(entity)).toList();
     }
 }

@@ -16,16 +16,20 @@ public final class EstadoBusinessImpl implements EstadoBusiness {
     @Override
     public final void register(final EstadoDomain domain) {
         EstadoEntity entity = EstadoAssembler.getInstance().toEntityFromDomain(domain);
-        daoFactory.getEstadoDAO().create(entity);
+        daoFactory.getEstado().create(entity);
     }
 
     @Override
     public final List<EstadoDomain> list(final EstadoDomain domain) {
-        final EstadoEntity entity = EstadoAssembler.getInstance().toEntityFromDomain(domain);
-        final List<EstadoEntity> result = daoFactory.getEstadoDAO().read(entity);
-        return null;
-    }
 
+        final EstadoEntity entity = EstadoAssembler.getInstance()
+                .toEntityFromDomain(domain);
+
+        List<EstadoEntity> resultEntityList = daoFactory.getEstado()
+                .read(entity);
+
+        return EstadoAssembler.getInstance().toDomainFromEntityList(resultEntityList);
+    }
     @Override
     public final void modify(final EstadoDomain domain) {
 
