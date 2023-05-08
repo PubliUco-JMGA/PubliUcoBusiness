@@ -5,6 +5,8 @@ import co.edu.uco.publiuco.business.domain.ObservacionRevisionDomain;
 import co.edu.uco.publiuco.dto.ObservacionRevisionDTO;
 import co.edu.uco.publiuco.entities.ObservacionRevisionEntity;
 
+import java.util.List;
+
 public final class ObservacionRevisionAssembler implements Assembler<ObservacionRevisionDomain, ObservacionRevisionDTO, ObservacionRevisionEntity> {
     public static final ObservacionRevisionAssembler INSTANCE = new ObservacionRevisionAssembler();
     public static ObservacionRevisionAssembler getInstance() { return INSTANCE; }
@@ -37,5 +39,20 @@ public final class ObservacionRevisionAssembler implements Assembler<Observacion
         return new ObservacionRevisionDomain(entity.getIdentificador(),EscritorPublicacionAssembler.getInstance().toDomainFromEntity(entity.getEscritorPublicacion()),
                 ComentarioRevisorAssembler.getInstance().toDomainFromEntity(entity.getComentarioRevisor()), entity.getFechaReportePublicacion(),
                 entity.getFechaRevisionObservacion(),entity.getObservacion(),EstadoAssembler.getInstance().toDomainFromEntity(entity.getEstado()));
+    }
+
+    @Override
+    public List<ObservacionRevisionDomain> toDomainFromEntityList(List<ObservacionRevisionEntity> entityList) {
+        return entityList.stream().map(entity -> toDomainFromEntity(entity)).toList();
+    }
+
+    @Override
+    public List<ObservacionRevisionDomain> toDomainFromDTOList(List<ObservacionRevisionDTO> dtoList) {
+        return dtoList.stream().map(dto -> toDomainFromDTO(dto)).toList();    }
+
+    @Override
+    public List<ObservacionRevisionDTO> toDTOFromDomainList(List<ObservacionRevisionDomain> domainList) {
+        return domainList.stream().map(domain -> toDTOFromDomain(domain)).toList();
+
     }
 }

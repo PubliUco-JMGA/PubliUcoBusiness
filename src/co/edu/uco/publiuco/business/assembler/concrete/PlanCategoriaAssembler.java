@@ -5,6 +5,8 @@ import co.edu.uco.publiuco.business.domain.PlanCategoriaDomain;
 import co.edu.uco.publiuco.dto.PlanCategoriaDTO;
 import co.edu.uco.publiuco.entities.PlanCategoriaEntity;
 
+import java.util.List;
+
 public final class PlanCategoriaAssembler implements Assembler<PlanCategoriaDomain, PlanCategoriaDTO, PlanCategoriaEntity> {
     public static final PlanCategoriaAssembler INSTANCE = new PlanCategoriaAssembler();
     public static PlanCategoriaAssembler getInstance() { return INSTANCE; }
@@ -34,5 +36,22 @@ public final class PlanCategoriaAssembler implements Assembler<PlanCategoriaDoma
     public PlanCategoriaDomain toDomainFromEntity(PlanCategoriaEntity entity) {
         return new PlanCategoriaDomain(entity.getIdentificador(),CategoriaAssembler.getInstance().toDomainFromEntity(entity.getCategoria()),
                 entity.getPrecio(),entity.getFechaDesde(),entity.getFechaHasta(),EstadoAssembler.getInstance().toDomainFromEntity(entity.getEstado()));
+    }
+
+    @Override
+    public List<PlanCategoriaDomain> toDomainFromEntityList(List<PlanCategoriaEntity> entityList) {
+        return entityList.stream().map(entity -> toDomainFromEntity(entity)).toList();
+
+    }
+
+    @Override
+    public List<PlanCategoriaDomain> toDomainFromDTOList(List<PlanCategoriaDTO> dtoList) {
+        return dtoList.stream().map(dto -> toDomainFromDTO(dto)).toList();
+    }
+
+    @Override
+    public List<PlanCategoriaDTO> toDTOFromDomainList(List<PlanCategoriaDomain> domainList) {
+        return domainList.stream().map(domain -> toDTOFromDomain(domain)).toList();
+
     }
 }

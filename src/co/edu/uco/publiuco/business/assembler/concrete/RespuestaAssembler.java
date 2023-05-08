@@ -5,6 +5,8 @@ import co.edu.uco.publiuco.business.domain.RespuestaDomain;
 import co.edu.uco.publiuco.dto.RespuestaDTO;
 import co.edu.uco.publiuco.entities.RespuestaEntity;
 
+import java.util.List;
+
 public final class RespuestaAssembler implements Assembler<RespuestaDomain, RespuestaDTO, RespuestaEntity> {
     public static final RespuestaAssembler INSTANCE = new RespuestaAssembler();
     public static RespuestaAssembler getInstance() { return INSTANCE; }
@@ -30,5 +32,21 @@ public final class RespuestaAssembler implements Assembler<RespuestaDomain, Resp
     @Override
     public RespuestaDomain toDomainFromEntity(RespuestaEntity entity) {
         return new RespuestaDomain(entity.getIdentificador(),entity.getNombre(),entity.getDescripcion());
+    }
+
+    @Override
+    public List<RespuestaDomain> toDomainFromEntityList(List<RespuestaEntity> entityList) {
+        return entityList.stream().map(entity -> toDomainFromEntity(entity)).toList();
+
+    }
+
+    @Override
+    public List<RespuestaDomain> toDomainFromDTOList(List<RespuestaDTO> dtoList) {
+        return dtoList.stream().map(dto -> toDomainFromDTO(dto)).toList();    }
+
+    @Override
+    public List<RespuestaDTO> toDTOFromDomainList(List<RespuestaDomain> domainList) {
+        return domainList.stream().map(domain -> toDTOFromDomain(domain)).toList();
+
     }
 }

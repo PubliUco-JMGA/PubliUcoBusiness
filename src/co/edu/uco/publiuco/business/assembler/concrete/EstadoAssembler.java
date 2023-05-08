@@ -5,7 +5,6 @@ import co.edu.uco.publiuco.business.domain.EstadoDomain;
 import co.edu.uco.publiuco.dto.EstadoDTO;
 import co.edu.uco.publiuco.entities.EstadoEntity;
 
-import java.util.ArrayList;
 import java.util.List;
 
 
@@ -39,5 +38,16 @@ public final class EstadoAssembler implements Assembler<EstadoDomain, EstadoDTO,
     @Override
     public final List<EstadoDomain> toDomainFromEntityList(List<EstadoEntity> entityList) {
         return entityList.stream().map(entity -> toDomainFromEntity(entity)).toList();
+    }
+
+    @Override
+    public List<EstadoDomain> toDomainFromDTOList(List<EstadoDTO> dtoList) {
+        return dtoList.stream().map(dto -> toDomainFromDTO(dto)).toList();
+    }
+
+    @Override
+    public List<EstadoDTO> toDTOFromDomainList(List<EstadoDomain> domainList) {
+        return domainList.stream().map(domain -> toDTOFromDomain(domain)).toList();
+
     }
 }

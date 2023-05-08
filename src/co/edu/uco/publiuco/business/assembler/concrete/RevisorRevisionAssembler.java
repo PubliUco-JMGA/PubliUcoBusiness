@@ -5,6 +5,8 @@ import co.edu.uco.publiuco.business.domain.RevisorRevisionDomain;
 import co.edu.uco.publiuco.dto.RevisorRevisionDTO;
 import co.edu.uco.publiuco.entities.RevisorRevisionEntity;
 
+import java.util.List;
+
 public final class RevisorRevisionAssembler implements Assembler<RevisorRevisionDomain, RevisorRevisionDTO, RevisorRevisionEntity> {
     public static final RevisorRevisionAssembler INSTANCE = new RevisorRevisionAssembler();
     public static RevisorRevisionAssembler getInstance() { return INSTANCE; }
@@ -36,5 +38,20 @@ public final class RevisorRevisionAssembler implements Assembler<RevisorRevision
     public RevisorRevisionDomain toDomainFromEntity(RevisorRevisionEntity entity) {
         return new RevisorRevisionDomain(entity.getIdentificador(),RevisionAssembler.getInstance().toDomainFromEntity(entity.getRevision()), RevisorAssembler.getInstance().toDomainFromEntity(entity.getRevisor()),
                 entity.getFechaAsignacionRevision(),entity.getFechaCompletitudRevision(),EstadoAssembler.getInstance().toDomainFromEntity(entity.getEstado()));
+    }
+
+    @Override
+    public List<RevisorRevisionDomain> toDomainFromEntityList(List<RevisorRevisionEntity> entityList) {
+        return entityList.stream().map(entity -> toDomainFromEntity(entity)).toList();
+    }
+
+    @Override
+    public List<RevisorRevisionDomain> toDomainFromDTOList(List<RevisorRevisionDTO> dtoList) {
+        return dtoList.stream().map(dto -> toDomainFromDTO(dto)).toList();    }
+
+    @Override
+    public List<RevisorRevisionDTO> toDTOFromDomainList(List<RevisorRevisionDomain> domainList) {
+        return domainList.stream().map(domain -> toDTOFromDomain(domain)).toList();
+
     }
 }

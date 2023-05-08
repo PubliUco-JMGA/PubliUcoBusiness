@@ -5,6 +5,8 @@ import co.edu.uco.publiuco.business.domain.EscritorPublicacionDomain;
 import co.edu.uco.publiuco.dto.EscritorPublicacionDTO;
 import co.edu.uco.publiuco.entities.EscritorPublicacionEntity;
 
+import java.util.List;
+
 public final class EscritorPublicacionAssembler implements Assembler<EscritorPublicacionDomain, EscritorPublicacionDTO, EscritorPublicacionEntity> {
     public static final EscritorPublicacionAssembler INSTANCE = new EscritorPublicacionAssembler();
     public static EscritorPublicacionAssembler getInstance() { return INSTANCE; }
@@ -33,5 +35,21 @@ public final class EscritorPublicacionAssembler implements Assembler<EscritorPub
     public EscritorPublicacionDomain toDomainFromEntity(EscritorPublicacionEntity entity) {
         return new EscritorPublicacionDomain(entity.getIdentificador(),PublicacionAssembler.getInstance().toDomainFromEntity(entity.getPublicacion()),
                 EscritorAssembler.getInstance().toDomainFromEntity(entity.getEscritor()), TipoEscritorAssembler.getInstance().toDomainFromEntity(entity.getTipoEscritor()));
+    }
+
+    @Override
+    public List<EscritorPublicacionDomain> toDomainFromEntityList(List<EscritorPublicacionEntity> entityList) {
+        return entityList.stream().map(entity -> toDomainFromEntity(entity)).toList();
+
+    }
+
+    @Override
+    public List<EscritorPublicacionDomain> toDomainFromDTOList(List<EscritorPublicacionDTO> dtoList) {
+        return dtoList.stream().map(dto -> toDomainFromDTO(dto)).toList();    }
+
+    @Override
+    public List<EscritorPublicacionDTO> toDTOFromDomainList(List<EscritorPublicacionDomain> domainList) {
+        return domainList.stream().map(domain -> toDTOFromDomain(domain)).toList();
+
     }
 }

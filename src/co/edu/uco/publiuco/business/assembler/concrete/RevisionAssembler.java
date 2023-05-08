@@ -6,6 +6,8 @@ import co.edu.uco.publiuco.dto.RevisionDTO;
 
 import co.edu.uco.publiuco.entities.RevisionEntity;
 
+import java.util.List;
+
 public final class RevisionAssembler implements Assembler<RevisionDomain, RevisionDTO, RevisionEntity> {
     public static final RevisionAssembler INSTANCE = new RevisionAssembler();
     public static RevisionAssembler getInstance() { return INSTANCE; }
@@ -37,5 +39,20 @@ public final class RevisionAssembler implements Assembler<RevisionDomain, Revisi
         return new RevisionDomain(entity.getIdentificador(), VersionAssembler.getInstance().toDomainFromEntity(entity.getVersion()),
                 TipoRevisionAssembler.getInstance().toDomainFromEntity(entity.getTipoRevision()), entity.getFechaSolicitudRevision(),
                 entity.getFechaLimiteRevision(), entity.getFechaCompletitudRevision(), EstadoAssembler.getInstance().toDomainFromEntity(entity.getEstado()));
+    }
+
+    @Override
+    public List<RevisionDomain> toDomainFromEntityList(List<RevisionEntity> entityList) {
+        return entityList.stream().map(entity -> toDomainFromEntity(entity)).toList();
+    }
+
+    @Override
+    public List<RevisionDomain> toDomainFromDTOList(List<RevisionDTO> dtoList) {
+        return dtoList.stream().map(dto -> toDomainFromDTO(dto)).toList();    }
+
+    @Override
+    public List<RevisionDTO> toDTOFromDomainList(List<RevisionDomain> domainList) {
+        return domainList.stream().map(domain -> toDTOFromDomain(domain)).toList();
+
     }
 }

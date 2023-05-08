@@ -5,6 +5,8 @@ import co.edu.uco.publiuco.business.domain.SuscripcionPublicacionDomain;
 import co.edu.uco.publiuco.dto.SuscripcionPublicacionDTO;
 import co.edu.uco.publiuco.entities.SuscripcionPublicacionEntity;
 
+import java.util.List;
+
 public final class SuscripcionPublicacionAssembler implements Assembler<SuscripcionPublicacionDomain, SuscripcionPublicacionDTO, SuscripcionPublicacionEntity> {
     public static final SuscripcionPublicacionAssembler INSTANCE = new SuscripcionPublicacionAssembler();
     public static SuscripcionPublicacionAssembler getInstance() { return INSTANCE; }
@@ -33,5 +35,20 @@ public final class SuscripcionPublicacionAssembler implements Assembler<Suscripc
     public SuscripcionPublicacionDomain toDomainFromEntity(SuscripcionPublicacionEntity entity) {
         return new SuscripcionPublicacionDomain(entity.getIdentificador(),PerfilAssembler.getInstance().toDomainFromEntity(entity.getPerfil()),
                 PlanPublicacionAssembler.getInstance().toDomainFromEntity(entity.getPlanPublicacion()));
+    }
+
+    @Override
+    public List<SuscripcionPublicacionDomain> toDomainFromEntityList(List<SuscripcionPublicacionEntity> entityList) {
+        return entityList.stream().map(entity -> toDomainFromEntity(entity)).toList();
+    }
+
+    @Override
+    public List<SuscripcionPublicacionDomain> toDomainFromDTOList(List<SuscripcionPublicacionDTO> dtoList) {
+        return dtoList.stream().map(dto -> toDomainFromDTO(dto)).toList();    }
+
+    @Override
+    public List<SuscripcionPublicacionDTO> toDTOFromDomainList(List<SuscripcionPublicacionDomain> domainList) {
+        return domainList.stream().map(domain -> toDTOFromDomain(domain)).toList();
+
     }
 }

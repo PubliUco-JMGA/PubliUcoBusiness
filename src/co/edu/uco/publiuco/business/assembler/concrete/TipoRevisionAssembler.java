@@ -5,6 +5,8 @@ import co.edu.uco.publiuco.business.domain.TipoRevisionDomain;
 import co.edu.uco.publiuco.dto.TipoRevisionDTO;
 import co.edu.uco.publiuco.entities.TipoRevisionEntity;
 
+import java.util.List;
+
 public final class TipoRevisionAssembler implements Assembler<TipoRevisionDomain, TipoRevisionDTO, TipoRevisionEntity> {
     public static final TipoRevisionAssembler INSTANCE = new TipoRevisionAssembler();
     public static TipoRevisionAssembler getInstance() { return INSTANCE; }
@@ -29,5 +31,20 @@ public final class TipoRevisionAssembler implements Assembler<TipoRevisionDomain
     @Override
     public TipoRevisionDomain toDomainFromEntity(TipoRevisionEntity entity) {
         return new TipoRevisionDomain(entity.getIdentificador(),entity.getNombre(),entity.getDescripcion());
+    }
+
+    @Override
+    public List<TipoRevisionDomain> toDomainFromEntityList(List<TipoRevisionEntity> entityList) {
+        return entityList.stream().map(entity -> toDomainFromEntity(entity)).toList();
+    }
+
+    @Override
+    public List<TipoRevisionDomain> toDomainFromDTOList(List<TipoRevisionDTO> dtoList) {
+        return dtoList.stream().map(dto -> toDomainFromDTO(dto)).toList();    }
+
+    @Override
+    public List<TipoRevisionDTO> toDTOFromDomainList(List<TipoRevisionDomain> domainList) {
+        return domainList.stream().map(domain -> toDTOFromDomain(domain)).toList();
+
     }
 }

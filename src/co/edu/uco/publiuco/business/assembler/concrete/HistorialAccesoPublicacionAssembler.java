@@ -5,6 +5,8 @@ import co.edu.uco.publiuco.business.domain.HistorialAccesoPublicacionDomain;
 import co.edu.uco.publiuco.dto.HistorialAccesoPublicacionDTO;
 import co.edu.uco.publiuco.entities.HistorialAccesoPublicacionEntity;
 
+import java.util.List;
+
 public final class HistorialAccesoPublicacionAssembler implements Assembler<HistorialAccesoPublicacionDomain, HistorialAccesoPublicacionDTO, HistorialAccesoPublicacionEntity> {
     public static final HistorialAccesoPublicacionAssembler INSTANCE = new HistorialAccesoPublicacionAssembler();
     public static HistorialAccesoPublicacionAssembler getInstance() { return INSTANCE; }
@@ -33,5 +35,20 @@ public final class HistorialAccesoPublicacionAssembler implements Assembler<Hist
     public HistorialAccesoPublicacionDomain toDomainFromEntity(HistorialAccesoPublicacionEntity entity) {
         return new HistorialAccesoPublicacionDomain(entity.getIdentificador(), LectorAssembler.getInstance().toDomainFromEntity(entity.getLector()),
                 PublicacionAssembler.getInstance().toDomainFromEntity(entity.getPublicacion()), entity.getFechaAcceso());
+    }
+
+    @Override
+    public List<HistorialAccesoPublicacionDomain> toDomainFromEntityList(List<HistorialAccesoPublicacionEntity> entityList) {
+        return entityList.stream().map(entity -> toDomainFromEntity(entity)).toList();
+    }
+
+    @Override
+    public List<HistorialAccesoPublicacionDomain> toDomainFromDTOList(List<HistorialAccesoPublicacionDTO> dtoList) {
+        return dtoList.stream().map(dto -> toDomainFromDTO(dto)).toList();    }
+
+    @Override
+    public List<HistorialAccesoPublicacionDTO> toDTOFromDomainList(List<HistorialAccesoPublicacionDomain> domainList) {
+        return domainList.stream().map(domain -> toDTOFromDomain(domain)).toList();
+
     }
 }

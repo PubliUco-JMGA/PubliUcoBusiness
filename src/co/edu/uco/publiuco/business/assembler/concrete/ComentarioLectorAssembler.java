@@ -5,6 +5,8 @@ import co.edu.uco.publiuco.business.domain.ComentarioLectorDomain;
 import co.edu.uco.publiuco.dto.ComentarioLectorDTO;
 import co.edu.uco.publiuco.entities.ComentarioLectorEntity;
 
+import java.util.List;
+
 public final class ComentarioLectorAssembler implements Assembler<ComentarioLectorDomain, ComentarioLectorDTO, ComentarioLectorEntity> {
     public static final ComentarioLectorAssembler INSTANCE = new ComentarioLectorAssembler();
     public static ComentarioLectorAssembler getInstance() { return INSTANCE; }
@@ -35,5 +37,20 @@ public final class ComentarioLectorAssembler implements Assembler<ComentarioLect
         return new ComentarioLectorDomain(entity.getIdentificador(),LectorAssembler.getInstance().toDomainFromEntity(entity.getLector()), PublicacionAssembler.getInstance().toDomainFromEntity(entity.getPublicacion()),
                 ComentarioLectorAssembler.getInstance().toDomainFromEntity(entity.getComentarioPadre()), entity.getCotenido(),entity.getFechaCalificacion(),
                 EstadoAssembler.getInstance().toDomainFromEntity(entity.getEstado()));
+    }
+
+    @Override
+    public List<ComentarioLectorDomain> toDomainFromEntityList(List<ComentarioLectorEntity> entityList) {
+        return entityList.stream().map(entity -> toDomainFromEntity(entity)).toList();
+    }
+
+    @Override
+    public List<ComentarioLectorDomain> toDomainFromDTOList(List<ComentarioLectorDTO> dtoList) {
+        return dtoList.stream().map(dto -> toDomainFromDTO(dto)).toList();    }
+
+    @Override
+    public List<ComentarioLectorDTO> toDTOFromDomainList(List<ComentarioLectorDomain> domainList) {
+        return domainList.stream().map(domain -> toDTOFromDomain(domain)).toList();
+
     }
 }

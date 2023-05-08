@@ -5,6 +5,8 @@ import co.edu.uco.publiuco.business.domain.TipoRelacionInstitucionDomain;
 import co.edu.uco.publiuco.dto.TipoRelacionInstitucionDTO;
 import co.edu.uco.publiuco.entities.TipoRelacionInstitucionEntity;
 
+import java.util.List;
+
 public final class TipoRelacionInstitucionAssembler implements Assembler<TipoRelacionInstitucionDomain, TipoRelacionInstitucionDTO,TipoRelacionInstitucionEntity> {
 
     public static final TipoRelacionInstitucionAssembler INSTANCE = new TipoRelacionInstitucionAssembler();
@@ -30,5 +32,20 @@ public final class TipoRelacionInstitucionAssembler implements Assembler<TipoRel
     @Override
     public TipoRelacionInstitucionDomain toDomainFromEntity(TipoRelacionInstitucionEntity entity) {
         return null;
+    }
+
+    @Override
+    public List<TipoRelacionInstitucionDomain> toDomainFromEntityList(List<TipoRelacionInstitucionEntity> entityList) {
+        return entityList.stream().map(entity -> toDomainFromEntity(entity)).toList();
+    }
+
+    @Override
+    public List<TipoRelacionInstitucionDomain> toDomainFromDTOList(List<TipoRelacionInstitucionDTO> dtoList) {
+        return dtoList.stream().map(dto -> toDomainFromDTO(dto)).toList();    }
+
+    @Override
+    public List<TipoRelacionInstitucionDTO> toDTOFromDomainList(List<TipoRelacionInstitucionDomain> domainList) {
+        return domainList.stream().map(domain -> toDTOFromDomain(domain)).toList();
+
     }
 }
