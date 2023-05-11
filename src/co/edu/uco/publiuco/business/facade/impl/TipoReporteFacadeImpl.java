@@ -24,31 +24,6 @@ public final class TipoReporteFacadeImpl implements TipoReporteFacade {
     }
 
     @Override
-    public void register(TipoReporteDTO dto) {
-        try {
-            daoFactory.initTransaction();
-            final TipoReporteDomain domain = TipoReporteAssembler.getInstance().toDomainFromDTO(dto);
-
-            business.register(domain);
-
-            daoFactory.commitTransaction();
-
-
-        } catch (final PubliucoException exception) {
-            daoFactory.rollbackTransaction();
-            throw exception;
-        } catch (final Exception exception) {
-            daoFactory.rollbackTransaction();
-            var userMessage = Messages.TipoReporteFacadeImplMessages.USER_MESSAGE_REGISTER;
-            var technicalMessage = Messages.TipoReporteFacadeImplMessages.TECHNICAL_MESSAGE_REGISTER;
-
-            throw PubliucoBusisnessException.create(technicalMessage, userMessage, exception);
-        } finally {
-            daoFactory.closeConection();
-        }
-    }
-
-    @Override
     public List<TipoReporteDTO> list(TipoReporteDTO dto) {
         try {
             daoFactory.initTransaction();

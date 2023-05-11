@@ -17,13 +17,6 @@ public class TipoEscritorBusinessImpl implements TipoEscritorBusiness {
 	}
 
 	@Override
-	public void register(TipoEscritorDomain domain) {
-		final TipoEscritorEntity entity = TipoEscritorAssembler.getInstance().toEntityFromDomain(domain);
-		daoFactory.getTipoEscritorDAO().create(entity);
-
-	}
-
-	@Override
 	public List<TipoEscritorDomain> list(TipoEscritorDomain domain) {
 		final TipoEscritorEntity entity = TipoEscritorAssembler.getInstance().toEntityFromDomain(domain);
 

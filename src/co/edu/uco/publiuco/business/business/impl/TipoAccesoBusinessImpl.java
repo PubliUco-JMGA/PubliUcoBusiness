@@ -17,13 +17,6 @@ public class TipoAccesoBusinessImpl implements TipoAccesoBusiness {
 	}
 
 	@Override
-	public void register(TipoAccesoDomain domain) {
-		final TipoAccesoEntity entity = TipoAccesoAssembler.getInstance().toEntityFromDomain(domain);
-		daoFactory.getTipoAccesoDAO().create(entity);
-
-	}
-
-	@Override
 	public List<TipoAccesoDomain> list(TipoAccesoDomain domain) {
 		final TipoAccesoEntity entity = TipoAccesoAssembler.getInstance().toEntityFromDomain(domain);
 

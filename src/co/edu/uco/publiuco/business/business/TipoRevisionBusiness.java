@@ -6,8 +6,6 @@ import co.edu.uco.publiuco.business.domain.TipoRevisionDomain;
 
 public interface TipoRevisionBusiness {
 
-	void register(TipoRevisionDomain domain);
-
 	List<TipoRevisionDomain> list(TipoRevisionDomain domain);
 
 }

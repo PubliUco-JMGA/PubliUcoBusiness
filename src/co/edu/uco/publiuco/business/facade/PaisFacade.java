@@ -7,7 +7,6 @@ import java.util.List;
 import java.util.UUID;
 
 public interface PaisFacade {
-    void register(PaisDTO dto);
 
     List<PaisDTO> list(PaisDTO dto);
 

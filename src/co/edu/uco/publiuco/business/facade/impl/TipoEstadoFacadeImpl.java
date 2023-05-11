@@ -23,30 +23,6 @@ public final class TipoEstadoFacadeImpl implements TipoEstadoFacade {
         business = new TipoEstadoBusinessImp(daoFactory);
     }
 
-    @Override
-    public void register(TipoEstadoDTO dto) {
-        try {
-            daoFactory.initTransaction();
-            final TipoEstadoDomain domain = TipoEstadoAssembler.getInstance().toDomainFromDTO(dto);
-
-            business.register(domain);
-
-            daoFactory.commitTransaction();
-
-
-        } catch (final PubliucoException exception) {
-            daoFactory.rollbackTransaction();
-            throw exception;
-        } catch (final Exception exception) {
-            daoFactory.rollbackTransaction();
-            var userMessage = Messages.TipoEstadoFacadeImplMessages.USER_MESSAGE_REGISTER;
-            var technicalMessage = Messages.TipoEstadoFacadeImplMessages.TECHNICAL_MESSAGE_REGISTER;
-
-            throw PubliucoBusisnessException.create(technicalMessage, userMessage, exception);
-        } finally {
-            daoFactory.closeConection();
-        }
-    }
 
     @Override
     public List<TipoEstadoDTO> list(TipoEstadoDTO dto) {

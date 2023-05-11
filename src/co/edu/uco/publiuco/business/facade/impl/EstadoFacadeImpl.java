@@ -24,32 +24,7 @@ public final class EstadoFacadeImpl implements EstadoFacade{
 		daoFactory = DAOFactory.getFactory(Factory.POSTGRESQL);
 		business = new EstadoBusinessImpl(daoFactory);
 	}
-	
-	@Override
-	public void register(EstadoDTO dto) {
-		try {
-			daoFactory.initTransaction();
-			final EstadoDomain domain = EstadoAssembler.getInstance().toDomainFromDTO(dto);
-			
-			business.register(domain);
-			
-			daoFactory.commitTransaction();
-		
-			
-		} catch (final PubliucoException exception) {
-			daoFactory.rollbackTransaction();
-			throw exception;
-		} catch (final Exception exception) {
-			daoFactory.rollbackTransaction();
-			var userMessage = EstadoFacadeImplMessages.USER_MESSAGE_REGISTER;
-			var technicalMessage = EstadoFacadeImplMessages.TECHNICAL_MESSAGE_REGISTER;
-			
-			throw PubliucoBusisnessException.create(technicalMessage, userMessage, exception);
-		} finally {
-			daoFactory.closeConection();
-		}
-		
-	}
+
 
 	@Override
 	public List<EstadoDTO> list(EstadoDTO dto) {
@@ -74,57 +49,6 @@ public final class EstadoFacadeImpl implements EstadoFacade{
 		} finally {
 			daoFactory.closeConection();
 		}
-	}
-
-	@Override
-	public void modify(EstadoDTO dto) {
-		try {
-			daoFactory.initTransaction();
-			final EstadoDomain domain = EstadoAssembler.getInstance().toDomainFromDTO(dto);
-			
-			business.modify(domain);
-			
-			daoFactory.commitTransaction();
-		
-			
-		} catch (final PubliucoException exception) {
-			daoFactory.rollbackTransaction();
-			throw exception;
-		} catch (final Exception exception) {
-			daoFactory.rollbackTransaction();
-			var userMessage = EstadoFacadeImplMessages.USER_MESSAGE_MODIFY;
-			var technicalMessage = EstadoFacadeImplMessages.TECHNICAL_MESSAGE_MODIFY;
-			
-			throw PubliucoBusisnessException.create(technicalMessage, userMessage, exception);
-		} finally {
-			daoFactory.closeConection();
-		}
-		
-	}
-
-	@Override
-	public void drop(UUID dto) {
-		try {
-			daoFactory.initTransaction();
-
-			business.drop(dto);
-			
-			daoFactory.commitTransaction();
-		
-			
-		} catch (final PubliucoException exception) {
-			daoFactory.rollbackTransaction();
-			throw exception;
-		} catch (final Exception exception) {
-			daoFactory.rollbackTransaction();
-			var userMessage = EstadoFacadeImplMessages.USER_MESSAGE_DROP;
-			var technicalMessage = EstadoFacadeImplMessages.TECHNICAL_MESSAGE_DROP;
-			
-			throw PubliucoBusisnessException.create(technicalMessage, userMessage, exception);
-		} finally {
-			daoFactory.closeConection();
-		}
-		
 	}
 	
 

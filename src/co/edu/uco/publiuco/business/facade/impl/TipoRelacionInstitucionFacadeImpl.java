@@ -23,30 +23,6 @@ public final class TipoRelacionInstitucionFacadeImpl implements TipoRelacionInst
         business = new TipoRelacionInstitucionBusinessImpl(daoFactory);
     }
 
-    @Override
-    public void register(TipoRelacionInstitucionDTO dto) {
-        try {
-            daoFactory.initTransaction();
-            final TipoRelacionInstitucionDomain domain = TipoRelacionInstitucionAssembler.getInstance().toDomainFromDTO(dto);
-
-            business.register(domain);
-
-            daoFactory.commitTransaction();
-
-
-        } catch (final PubliucoException exception) {
-            daoFactory.rollbackTransaction();
-            throw exception;
-        } catch (final Exception exception) {
-            daoFactory.rollbackTransaction();
-            var userMessage = Messages.TipoRelacionInstitucionFacadeImplMessages.USER_MESSAGE_REGISTER;
-            var technicalMessage = Messages.TipoRelacionInstitucionFacadeImplMessages.TECHNICAL_MESSAGE_REGISTER;
-
-            throw PubliucoBusisnessException.create(technicalMessage, userMessage, exception);
-        } finally {
-            daoFactory.closeConection();
-        }
-    }
 
     @Override
     public List<TipoRelacionInstitucionDTO> list(TipoRelacionInstitucionDTO dto) {

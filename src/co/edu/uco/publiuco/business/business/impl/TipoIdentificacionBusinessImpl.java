@@ -17,13 +17,6 @@ public class TipoIdentificacionBusinessImpl implements TipoIdentificacionBusines
 	}
 
 	@Override
-	public void register(TipoIdentificacionDomain domain) {
-		final TipoIdentificacionEntity entity = TipoIdentificacionAssembler.getInstance().toEntityFromDomain(domain);
-		daoFactory.getTipoIdentificacionDAO().create(entity);
-
-	}
-
-	@Override
 	public List<TipoIdentificacionDomain> list(TipoIdentificacionDomain domain) {
 		final TipoIdentificacionEntity entity = TipoIdentificacionAssembler.getInstance().toEntityFromDomain(domain);
 

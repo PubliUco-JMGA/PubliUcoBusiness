@@ -24,31 +24,6 @@ public final class TipoComentarioRevisorFacadeImpl implements TipoComentarioRevi
     }
 
     @Override
-    public void register(TipoComentarioRevisorDTO dto) {
-        try {
-            daoFactory.initTransaction();
-            final TipoComentarioRevisorDomain domain = TipoComentarioRevisorAssembler.getInstance().toDomainFromDTO(dto);
-
-            business.register(domain);
-
-            daoFactory.commitTransaction();
-
-
-        } catch (final PubliucoException exception) {
-            daoFactory.rollbackTransaction();
-            throw exception;
-        } catch (final Exception exception) {
-            daoFactory.rollbackTransaction();
-            var userMessage = Messages.TipoComentarioRevisorFacadeImplMessages.USER_MESSAGE_REGISTER;
-            var technicalMessage = Messages.TipoComentarioRevisorFacadeImplMessages.TECHNICAL_MESSAGE_REGISTER;
-
-            throw PubliucoBusisnessException.create(technicalMessage, userMessage, exception);
-        } finally {
-            daoFactory.closeConection();
-        }
-    }
-
-    @Override
     public List<TipoComentarioRevisorDTO> list(TipoComentarioRevisorDTO dto) {
         try {
             daoFactory.initTransaction();

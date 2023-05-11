@@ -24,31 +24,6 @@ public final class TipoEscritorFacadeImpl implements TipoEscritorFacade {
     }
 
     @Override
-    public void register(TipoEscritorDTO dto) {
-        try {
-            daoFactory.initTransaction();
-            final TipoEscritorDomain domain = TipoEscritorAssembler.getInstance().toDomainFromDTO(dto);
-
-            business.register(domain);
-
-            daoFactory.commitTransaction();
-
-
-        } catch (final PubliucoException exception) {
-            daoFactory.rollbackTransaction();
-            throw exception;
-        } catch (final Exception exception) {
-            daoFactory.rollbackTransaction();
-            var userMessage = Messages.TipoEscritorFacadeImplMessages.USER_MESSAGE_REGISTER;
-            var technicalMessage = Messages.TipoEscritorFacadeImplMessages.TECHNICAL_MESSAGE_REGISTER;
-
-            throw PubliucoBusisnessException.create(technicalMessage, userMessage, exception);
-        } finally {
-            daoFactory.closeConection();
-        }
-    }
-
-    @Override
     public List<TipoEscritorDTO> list(TipoEscritorDTO dto) {
         try {
             daoFactory.initTransaction();

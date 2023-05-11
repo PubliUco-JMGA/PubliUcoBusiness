@@ -17,14 +17,6 @@ public class TipoComentarioRevisorBusinessImpl implements TipoComentarioRevisorB
 	}
 
 	@Override
-	public void register(TipoComentarioRevisorDomain domain) {
-		final TipoComentarioRevisorEntity entity = TipoComentarioRevisorAssembler.getInstance()
-				.toEntityFromDomain(domain);
-		daoFactory.getTipoComentarioDAO().create(entity);
-
-	}
-
-	@Override
 	public List<TipoComentarioRevisorDomain> list(TipoComentarioRevisorDomain domain) {
 		final TipoComentarioRevisorEntity entity = TipoComentarioRevisorAssembler.getInstance()
 				.toEntityFromDomain(domain);

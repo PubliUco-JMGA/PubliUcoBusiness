@@ -10,9 +10,14 @@
     <orderEntry type="module" module-name="PubliucoEntities1" />
     <orderEntry type="module" module-name="PubliucoDTO1" />
     <orderEntry type="module" module-name="PubliucoData1" />
+    <orderEntry type="module" module-name="PubliucoCrossCutting1" />
     <orderEntry type="module" module-name="PubliucoDTO1" />
     <orderEntry type="module" module-name="PubliucoData1" />
     <orderEntry type="module" module-name="PubliucoEntities1" />
-    <orderEntry type="module" module-name="PubliucoCrossCutting" />
+    <orderEntry type="module" module-name="PubliucoCrossCutting1" />
+    <orderEntry type="module" module-name="PubliucoData1" />
+    <orderEntry type="module" module-name="PubliucoDTO1" />
+    <orderEntry type="module" module-name="PubliucoCrossCutting1" />
+    <orderEntry type="module" module-name="PubliucoEntities1" />
   </component>
 </module>

@@ -23,30 +23,6 @@ public final class TipoIdentificacionFacadeImpl implements TipoIdentificacionFac
         business = new TipoIdentificacionBusinessImpl(daoFactory);
     }
 
-    @Override
-    public void register(TipoIdentificacionDTO dto) {
-        try {
-            daoFactory.initTransaction();
-            final TipoIdentificacionDomain domain = TipoIdentificacionAssembler.getInstance().toDomainFromDTO(dto);
-
-            business.register(domain);
-
-            daoFactory.commitTransaction();
-
-
-        } catch (final PubliucoException exception) {
-            daoFactory.rollbackTransaction();
-            throw exception;
-        } catch (final Exception exception) {
-            daoFactory.rollbackTransaction();
-            var userMessage = Messages.TipoIdentificacionFacadeImplMessages.USER_MESSAGE_REGISTER;
-            var technicalMessage = Messages.TipoIdentificacionFacadeImplMessages.TECHNICAL_MESSAGE_REGISTER;
-
-            throw PubliucoBusisnessException.create(technicalMessage, userMessage, exception);
-        } finally {
-            daoFactory.closeConection();
-        }
-    }
 
     @Override
     public List<TipoIdentificacionDTO> list(TipoIdentificacionDTO dto) {

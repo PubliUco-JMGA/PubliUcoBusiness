@@ -24,31 +24,6 @@ public final class TipoRevisionFacadeImpl implements TipoRevisionFacade {
     }
 
     @Override
-    public void register(TipoRevisionDTO dto) {
-        try {
-            daoFactory.initTransaction();
-            final TipoRevisionDomain domain = TipoRevisionAssembler.getInstance().toDomainFromDTO(dto);
-
-            business.register(domain);
-
-            daoFactory.commitTransaction();
-
-
-        } catch (final PubliucoException exception) {
-            daoFactory.rollbackTransaction();
-            throw exception;
-        } catch (final Exception exception) {
-            daoFactory.rollbackTransaction();
-            var userMessage = Messages.TipoRevisionFacadeImplMessages.USER_MESSAGE_REGISTER;
-            var technicalMessage = Messages.TipoRevisionFacadeImplMessages.TECHNICAL_MESSAGE_REGISTER;
-
-            throw PubliucoBusisnessException.create(technicalMessage, userMessage, exception);
-        } finally {
-            daoFactory.closeConection();
-        }
-    }
-
-    @Override
     public List<TipoRevisionDTO> list(TipoRevisionDTO dto) {
         try {
             daoFactory.initTransaction();

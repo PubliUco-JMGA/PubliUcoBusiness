@@ -23,30 +23,6 @@ public final class TipoAccesoFacadeImpl implements TipoAccesoFacade {
         business = new TipoAccesoBusinessImpl(daoFactory);
     }
 
-    @Override
-    public void register(TipoAccesoDTO dto) {
-        try {
-            daoFactory.initTransaction();
-            final TipoAccesoDomain domain = TipoAccesoAssembler.getInstance().toDomainFromDTO(dto);
-
-            business.register(domain);
-
-            daoFactory.commitTransaction();
-
-
-        } catch (final PubliucoException exception) {
-            daoFactory.rollbackTransaction();
-            throw exception;
-        } catch (final Exception exception) {
-            daoFactory.rollbackTransaction();
-            var userMessage = Messages.TipoAccesoFacadeImplMessages.USER_MESSAGE_REGISTER;
-            var technicalMessage = Messages.TipoAccesoFacadeImplMessages.TECHNICAL_MESSAGE_REGISTER;
-
-            throw PubliucoBusisnessException.create(technicalMessage, userMessage, exception);
-        } finally {
-            daoFactory.closeConection();
-        }
-    }
 
     @Override
     public List<TipoAccesoDTO> list(TipoAccesoDTO dto) {

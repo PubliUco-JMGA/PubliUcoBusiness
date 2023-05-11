@@ -25,31 +25,6 @@ public final class PaisFacadeImpl implements PaisFacade {
 
 
     @Override
-    public void register(PaisDTO dto) {
-        try {
-            daoFactory.initTransaction();
-            final PaisDomain domain = PaisAssembler.getInstance().toDomainFromDTO(dto);
-
-            business.register(domain);
-
-            daoFactory.commitTransaction();
-
-
-        } catch (final PubliucoException exception) {
-            daoFactory.rollbackTransaction();
-            throw exception;
-        } catch (final Exception exception) {
-            daoFactory.rollbackTransaction();
-            var userMessage = Messages.PaisFacadeImplMessages.USER_MESSAGE_REGISTER;
-            var technicalMessage = Messages.PaisFacadeImplMessages.TECHNICAL_MESSAGE_REGISTER;
-
-            throw PubliucoBusisnessException.create(technicalMessage, userMessage, exception);
-        } finally {
-            daoFactory.closeConection();
-        }
-    }
-
-    @Override
     public List<PaisDTO> list(PaisDTO dto) {
         try {
             daoFactory.initTransaction();

@@ -17,14 +17,6 @@ public class TipoRelacionInstitucionBusinessImpl implements TipoRelacionInstituc
 	}
 
 	@Override
-	public void register(TipoRelacionInstitucionDomain domain) {
-		final TipoRelacionInstitucionEntity entity = TipoRelacionInstitucionAssembler.getInstance()
-				.toEntityFromDomain(domain);
-		daoFactory.getTipoRelacionInstitucionDAO().create(entity);
-
-	}
-
-	@Override
 	public List<TipoRelacionInstitucionDomain> list(TipoRelacionInstitucionDomain domain) {
 		final TipoRelacionInstitucionEntity entity = TipoRelacionInstitucionAssembler.getInstance()
 				.toEntityFromDomain(domain);

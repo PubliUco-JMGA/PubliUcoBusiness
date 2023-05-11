@@ -6,8 +6,6 @@ import co.edu.uco.publiuco.business.domain.TipoReporteDomain;
 
 public interface TipoReporteBusiness {
 	
-	void register(TipoReporteDomain domain); 
-	
 	List<TipoReporteDomain> list(TipoReporteDomain domain);
 
 }

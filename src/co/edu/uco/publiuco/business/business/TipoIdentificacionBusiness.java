@@ -5,8 +5,6 @@ import java.util.List;
 import co.edu.uco.publiuco.business.domain.TipoIdentificacionDomain;
 
 public interface TipoIdentificacionBusiness {
-	
-	void register(TipoIdentificacionDomain domain);
 
 	List<TipoIdentificacionDomain> list(TipoIdentificacionDomain domain);
 

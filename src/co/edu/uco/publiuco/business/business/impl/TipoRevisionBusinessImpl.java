@@ -17,13 +17,6 @@ public class TipoRevisionBusinessImpl implements TipoRevisionBusiness {
 	}
 
 	@Override
-	public void register(TipoRevisionDomain domain) {
-		final TipoRevisionEntity entity = TipoRevisionAssembler.getInstance().toEntityFromDomain(domain);
-		daoFactory.getTipoRevisionDAO().create(entity);
-
-	}
-
-	@Override
 	public List<TipoRevisionDomain> list(TipoRevisionDomain domain) {
 		final TipoRevisionEntity entity = TipoRevisionAssembler.getInstance().toEntityFromDomain(domain);
 

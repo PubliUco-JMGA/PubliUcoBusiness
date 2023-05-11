@@ -17,13 +17,6 @@ public class TipoReporteBusinessImpl implements TipoReporteBusiness {
 	}
 
 	@Override
-	public void register(TipoReporteDomain domain) {
-		final TipoReporteEntity entity = TipoReporteAssembler.getInstance().toEntityFromDomain(domain);
-		daoFactory.getTipoReporteDAO().create(entity);
-
-	}
-
-	@Override
 	public List<TipoReporteDomain> list(TipoReporteDomain domain) {
 		final TipoReporteEntity entity = TipoReporteAssembler.getInstance().toEntityFromDomain(domain);
 
