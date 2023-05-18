@@ -8,22 +8,19 @@ import java.util.UUID;
 public final class EscritorDomain {
     private UUID identificador;
     private PersonaDomain datosPersona;
-    private TipoRelacionInstitucionDomain tipoRelacionInstitucion;
     private EstadoDomain estado;
-    public static EscritorDomain DEFAULT_OBJECT = new EscritorDomain();
+    public static final EscritorDomain DEFAULT_OBJECT = new EscritorDomain();
 
     private EscritorDomain() {
         super();
         setIdentificador(UtilUUID.getDefaultValue());
         setDatosPersona(PersonaDomain.getDefaultObject());
-        setTipoRelacionInstitucion(TipoRelacionInstitucionDomain.getDefaultObject());
         setEstado(EstadoDomain.getDefaultObject());
     }
-    public EscritorDomain(UUID identificador, PersonaDomain datosPersona, TipoRelacionInstitucionDomain tipoRelacionInstitucion, EstadoDomain estado) {
+    public EscritorDomain(UUID identificador, PersonaDomain datosPersona, EstadoDomain estado) {
         super();
         setIdentificador(identificador);
         setDatosPersona(datosPersona);
-        setTipoRelacionInstitucion(tipoRelacionInstitucion);
         setEstado(estado);
     }
 
@@ -33,10 +30,6 @@ public final class EscritorDomain {
 
     public PersonaDomain getDatosPersona() {
         return datosPersona;
-    }
-
-    public TipoRelacionInstitucionDomain getTipoRelacionInstitucion() {
-        return tipoRelacionInstitucion;
     }
 
     public EstadoDomain getEstado() {
@@ -51,9 +44,6 @@ public final class EscritorDomain {
         this.datosPersona = UtilObject.getDefault(datosPersona, PersonaDomain.getDefaultObject());
     }
 
-    private void setTipoRelacionInstitucion(TipoRelacionInstitucionDomain tipoRelacionInstitucion) {
-        this.tipoRelacionInstitucion = UtilObject.getDefault(tipoRelacionInstitucion, TipoRelacionInstitucionDomain.getDefaultObject());
-    }
 
     private void setEstado(EstadoDomain estado) {
         this.estado = UtilObject.getDefault(estado, EstadoDomain.getDefaultObject());

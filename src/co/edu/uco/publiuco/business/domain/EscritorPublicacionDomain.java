@@ -8,23 +8,23 @@ public final class EscritorPublicacionDomain {
     private UUID identificador;
     private PublicacionDomain publicacion;
     private EscritorDomain escritor;
-    private TipoEscritorDomain tipoEscritor;
-    public static EscritorPublicacionDomain DEFAULT_OBJECT = new EscritorPublicacionDomain();
+    private TipoEscritorDomain tipo;
+    public static final EscritorPublicacionDomain DEFAULT_OBJECT = new EscritorPublicacionDomain();
 
     private EscritorPublicacionDomain() {
         super();
         setIdentificador(UtilUUID.getDefaultValue());
         setPublicacion(PublicacionDomain.getDefaultObject());
         setEscritor(EscritorDomain.getDefaultObject());
-        setTipoEscritor(TipoEscritorDomain.getDefaultObject());
+        setTipo(TipoEscritorDomain.getDefaultObject());
     }
 
-    public EscritorPublicacionDomain(UUID identificador, PublicacionDomain publicacion, EscritorDomain escritor, TipoEscritorDomain tipoEscritor) {
+    public EscritorPublicacionDomain(UUID identificador, PublicacionDomain publicacion, EscritorDomain escritor, TipoEscritorDomain tipo) {
         super();
         setIdentificador(identificador);
         setPublicacion(publicacion);
         setEscritor(escritor);
-        setTipoEscritor(tipoEscritor);
+        setTipo(tipo);
     }
 
     public UUID getIdentificador() {
@@ -39,8 +39,8 @@ public final class EscritorPublicacionDomain {
         return escritor;
     }
 
-    public TipoEscritorDomain getTipoEscritor() {
-        return tipoEscritor;
+    public TipoEscritorDomain getTipo() {
+        return tipo;
     }
 
     private void setIdentificador(final UUID identificador) {
@@ -55,8 +55,8 @@ public final class EscritorPublicacionDomain {
         this.escritor = UtilObject.getDefault(escritor, EscritorDomain.getDefaultObject());
     }
 
-    private void setTipoEscritor(final TipoEscritorDomain tipoEscritor) {
-        this.tipoEscritor = UtilObject.getDefault(tipoEscritor, TipoEscritorDomain.getDefaultObject());
+    private void setTipo(final TipoEscritorDomain tipo) {
+        this.tipo = UtilObject.getDefault(tipo, TipoEscritorDomain.getDefaultObject());
     }
     public static EscritorPublicacionDomain getDefaultObject (){
         return DEFAULT_OBJECT;

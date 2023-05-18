@@ -15,26 +15,26 @@ public final class ComentarioRevisorAssembler implements Assembler<ComentarioRev
     }
     @Override
     public ComentarioRevisorDTO toDTOFromDomain(ComentarioRevisorDomain domain) {
-        return ComentarioRevisorDTO.create().setIdentificador(domain.getIdentificador()).setComentario(domain.getComentario())
-                .setTipoComentarioRevisor(TipoComentarioRevisorAssembler.getInstance().toDTOFromDomain(domain.getTipoComentarioRevisor()))
+        return ComentarioRevisorDTO.create().setIdentificador(domain.getIdentificador()).setContenido(domain.getContenido())
+                .setTipo(TipoComentarioRevisorAssembler.getInstance().toDTOFromDomain(domain.getTipo()))
                 .setRevisorRevision(RevisorRevisionAssembler.getInstance().toDTOFromDomain(domain.getRevisorRevision()));
     }
 
     @Override
     public ComentarioRevisorDomain toDomainFromDTO(ComentarioRevisorDTO dto) {
         return new ComentarioRevisorDomain(dto.getIdentificador(),RevisorRevisionAssembler.getInstance().toDomainFromDTO(dto.getRevisorRevision()),
-                TipoComentarioRevisorAssembler.getInstance().toDomainFromDTO(dto.getTipoComentarioRevisor()), dto.getComentario());
+                TipoComentarioRevisorAssembler.getInstance().toDomainFromDTO(dto.getTipo()), dto.getContenido());
     }
 
     @Override
     public ComentarioRevisorEntity toEntityFromDomain(ComentarioRevisorDomain domain) {
-        return new ComentarioRevisorEntity(domain.getIdentificador(), RevisorRevisionAssembler.getInstance().toEntityFromDomain(domain.getRevisorRevision()), TipoComentarioRevisorAssembler.getInstance().toEntityFromDomain(domain.getTipoComentarioRevisor()),
-                domain.getComentario());
+        return new ComentarioRevisorEntity(domain.getIdentificador(), RevisorRevisionAssembler.getInstance().toEntityFromDomain(domain.getRevisorRevision()), TipoComentarioRevisorAssembler.getInstance().toEntityFromDomain(domain.getTipo()),
+                domain.getContenido());
     }
 
     @Override
     public ComentarioRevisorDomain toDomainFromEntity(ComentarioRevisorEntity entity) {
-        return new ComentarioRevisorDomain(entity.getIdentificador(),RevisorRevisionAssembler.getInstance().toDomainFromEntity(entity.getRevisorRevision()),TipoComentarioRevisorAssembler.getInstance().toDomainFromEntity(entity.getTipoComentarioRevisor()), entity.getComentario());
+        return new ComentarioRevisorDomain(entity.getIdentificador(),RevisorRevisionAssembler.getInstance().toDomainFromEntity(entity.getRevisorRevision()),TipoComentarioRevisorAssembler.getInstance().toDomainFromEntity(entity.getTipo()), entity.getContenido());
     }
 
     @Override

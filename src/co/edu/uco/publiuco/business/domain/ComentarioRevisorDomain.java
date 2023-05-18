@@ -9,24 +9,24 @@ import java.util.UUID;
 public final class ComentarioRevisorDomain {
     private UUID identificador;
     private RevisorRevisionDomain revisorRevision;
-    private TipoComentarioRevisorDomain tipoComentarioRevisor;
-    private String comentario;
-    public static ComentarioRevisorDomain DEFAULT_OBJECT = new ComentarioRevisorDomain();
+    private TipoComentarioRevisorDomain tipo;
+    private String contenido;
+    public static final ComentarioRevisorDomain DEFAULT_OBJECT = new ComentarioRevisorDomain();
 
-    public ComentarioRevisorDomain(UUID identificador, RevisorRevisionDomain revisorRevision, TipoComentarioRevisorDomain tipoComentarioRevisor, String comentario) {
+    public ComentarioRevisorDomain(UUID identificador, RevisorRevisionDomain revisorRevision, TipoComentarioRevisorDomain tipo, String contenido) {
         super();
         setIdentificador(identificador);
         setRevisorRevision(revisorRevision);
-        setTipoComentarioRevisor(tipoComentarioRevisor);
-        setComentario(comentario);
+        setTipo(tipo);
+        setContenido(contenido);
 
     }
     private ComentarioRevisorDomain() {
         super();
         setIdentificador(UtilUUID.getDefaultValue());
         setRevisorRevision(RevisorRevisionDomain.getDefaultObject());
-        setTipoComentarioRevisor(TipoComentarioRevisorDomain.getDefaultObject());
-        setComentario(UtilText.getDefaultValue());
+        setTipo(TipoComentarioRevisorDomain.getDefaultObject());
+        setContenido(UtilText.getDefaultValue());
 
     }
 
@@ -38,12 +38,12 @@ public final class ComentarioRevisorDomain {
         return revisorRevision;
     }
 
-    public TipoComentarioRevisorDomain getTipoComentarioRevisor() {
-        return tipoComentarioRevisor;
+    public TipoComentarioRevisorDomain getTipo() {
+        return tipo;
     }
 
-    public String getComentario() {
-        return comentario;
+    public String getContenido() {
+        return contenido;
     }
 
     private void setIdentificador(final UUID identificador) {
@@ -54,12 +54,12 @@ public final class ComentarioRevisorDomain {
         this.revisorRevision = UtilObject.getDefault(revisorRevision, RevisorRevisionDomain.getDefaultObject());
     }
 
-    private void setTipoComentarioRevisor(final TipoComentarioRevisorDomain tipoComentarioRevisor) {
-        this.tipoComentarioRevisor = UtilObject.getDefault(tipoComentarioRevisor, TipoComentarioRevisorDomain.getDefaultObject());
+    private void setTipo(final TipoComentarioRevisorDomain tipo) {
+        this.tipo = UtilObject.getDefault(tipo, TipoComentarioRevisorDomain.getDefaultObject());
     }
 
-    private void setComentario(final String comentario) {
-        this.comentario = UtilText.applyTrim(comentario);
+    private void setContenido(final String contenido) {
+        this.contenido = UtilText.applyTrim(contenido);
     }
     public static ComentarioRevisorDomain getDefaultObject (){
         return DEFAULT_OBJECT;

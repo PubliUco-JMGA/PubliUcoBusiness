@@ -13,29 +13,40 @@ public final class ReporteDomain {
     private LectorDomain lector;
     private ComentarioLectorDomain comentario;
     private String razon;
-    private TipoReporteDomain tipoReporte;
+    private TipoReporteDomain tipo;
     private LocalDateTime fechaReporte;
-    public static ReporteDomain DEFAULT_OBJECT = new ReporteDomain();
+    private EstadoDomain estado;
+    public static final ReporteDomain DEFAULT_OBJECT = new ReporteDomain();
 
     private ReporteDomain() {
         setIdentificador(UtilUUID.getDefaultValue());
         setLector(LectorDomain.getDefaultObject());
         setComentario(ComentarioLectorDomain.getDefaultObject());
         setRazon(UtilText.getDefaultValue());
-        setTipoReporte(TipoReporteDomain.getDefaultObject());
+        setTipo(TipoReporteDomain.getDefaultObject());
         setFechaReporte(UtilDate.getDefaultValue());
+        setEstado(EstadoDomain.getDefaultObject());
     }
 
-    public ReporteDomain(UUID identificador, LectorDomain lector, ComentarioLectorDomain comentario, String razon, TipoReporteDomain tipoReporte, LocalDateTime fechaReporte) {
+    public ReporteDomain(UUID identificador, LectorDomain lector, ComentarioLectorDomain comentario, String razon, TipoReporteDomain tipo, LocalDateTime fechaReporte,EstadoDomain estado) {
         setIdentificador(identificador);
         setLector(lector);
         setComentario(comentario);
         setRazon(razon);
-        setTipoReporte(tipoReporte);
+        setTipo(tipo);
         setFechaReporte(fechaReporte);
+        setEstado(estado);
     }
+    
+    public EstadoDomain getEstado() {
+		return estado;
+	}
 
-    public UUID getIdentificador() {
+	private void setEstado(EstadoDomain estado) {
+		this.estado = UtilObject.getDefault(estado, EstadoDomain.getDefaultObject());
+	}
+
+	public UUID getIdentificador() {
         return identificador;
     }
 
@@ -51,8 +62,8 @@ public final class ReporteDomain {
         return razon;
     }
 
-    public TipoReporteDomain getTipoReporte() {
-        return tipoReporte;
+    public TipoReporteDomain getTipo() {
+        return tipo;
     }
 
     public LocalDateTime getFechaReporte() {
@@ -75,8 +86,8 @@ public final class ReporteDomain {
         this.razon = UtilText.applyTrim(razon);
     }
 
-    private void setTipoReporte(final TipoReporteDomain tipoReporte) {
-        this.tipoReporte = UtilObject.getDefault(tipoReporte, TipoReporteDomain.getDefaultObject());
+    private void setTipo(final TipoReporteDomain tipo) {
+        this.tipo = UtilObject.getDefault(tipo, TipoReporteDomain.getDefaultObject());
     }
 
     private void setFechaReporte(final LocalDateTime fechaReporte) {

@@ -17,27 +17,27 @@ public final class  ReporteAssembler implements Assembler<ReporteDomain, Reporte
     public ReporteDTO toDTOFromDomain(ReporteDomain domain) {
         return ReporteDTO.create().setIdentificador(domain.getIdentificador()).setFechaReporte(domain.getFechaReporte())
                 .setComentario(ComentarioLectorAssembler.getInstance().toDTOFromDomain(domain.getComentario())).setLector(LectorAssembler.getInstance().toDTOFromDomain(domain.getLector()))
-                .setTipoReporte(TipoReporteAssembler.getInstance().toDTOFromDomain(domain.getTipoReporte())).setRazon(domain.getRazon());
+                .setTipo(TipoReporteAssembler.getInstance().toDTOFromDomain(domain.getTipo())).setRazon(domain.getRazon());
     }
 
     @Override
     public ReporteDomain toDomainFromDTO(ReporteDTO dto) {
         return new ReporteDomain(dto.getIdentificador(),LectorAssembler.getInstance().toDomainFromDTO(dto.getLector()),
-                ComentarioLectorAssembler.getInstance().toDomainFromDTO(dto.getComentario()),dto.getRazon(),TipoReporteAssembler.getInstance().toDomainFromDTO(dto.getTipoReporte()),
-                dto.getFechaReporte());
+                ComentarioLectorAssembler.getInstance().toDomainFromDTO(dto.getComentario()),dto.getRazon(),TipoReporteAssembler.getInstance().toDomainFromDTO(dto.getTipo()),
+                dto.getFechaReporte(), EstadoAssembler.getInstance().toDomainFromDTO(dto.getEstado()));
     }
 
     @Override
     public ReporteEntity toEntityFromDomain(ReporteDomain domain) {
         return new ReporteEntity(domain.getIdentificador(),LectorAssembler.getInstance().toEntityFromDomain(domain.getLector()),
-                ComentarioLectorAssembler.getInstance().toEntityFromDomain(domain.getComentario()), domain.getRazon(),TipoReporteAssembler.getInstance().toEntityFromDomain(domain.getTipoReporte()),
-                domain.getFechaReporte());
+                ComentarioLectorAssembler.getInstance().toEntityFromDomain(domain.getComentario()), domain.getRazon(),TipoReporteAssembler.getInstance().toEntityFromDomain(domain.getTipo()),
+                domain.getFechaReporte(),EstadoAssembler.getInstance().toEntityFromDomain(domain.getEstado()));
     }
 
     @Override
     public ReporteDomain toDomainFromEntity(ReporteEntity entity) {
         return new ReporteDomain(entity.getIdentificador(),LectorAssembler.getInstance().toDomainFromEntity(entity.getLector()), ComentarioLectorAssembler.getInstance().toDomainFromEntity(entity.getComentario()),
-                entity.getRazon(),TipoReporteAssembler.getInstance().toDomainFromEntity(entity.getTipoReporte()),entity.getFechaReporte() );
+                entity.getRazon(),TipoReporteAssembler.getInstance().toDomainFromEntity(entity.getTipo()),entity.getFechaReporte(), EstadoAssembler.getInstance().toDomainFromEntity(entity.getEstado()) );
     }
 
     @Override

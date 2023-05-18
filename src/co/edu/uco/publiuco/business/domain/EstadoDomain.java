@@ -12,23 +12,23 @@ public final class EstadoDomain {
 
     private UUID identificador;
     private String nombre;
-    private TipoEstadoDomain tipoEstado;
-    public static EstadoDomain DEFAULT_OBJECT = new EstadoDomain();
+    private TipoEstadoDomain tipo;
+    public static final EstadoDomain DEFAULT_OBJECT = new EstadoDomain();
 
 
     private EstadoDomain() {
         super();
         setIdentificador(UtilUUID.getDefaultValue());
         setNombre(UtilText.getDefaultValue());
-        setTipoEstado(TipoEstadoDomain.getDefaultObject());
+        setTipo(TipoEstadoDomain.getDefaultObject());
     }
 
 
-    public EstadoDomain(UUID identificador, String nombre, TipoEstadoDomain tipoEstado) {
+    public EstadoDomain(UUID identificador, String nombre, TipoEstadoDomain tipo) {
         super();
         setIdentificador(identificador);
         setNombre(nombre);
-        setTipoEstado(tipoEstado);
+        setTipo(tipo);
     }
 
     private final void setIdentificador(final UUID identificador) {
@@ -39,9 +39,9 @@ public final class EstadoDomain {
         this.nombre = UtilText.applyTrim(nombre);
     }
 
-    private final void setTipoEstado(final TipoEstadoDomain tipoEstado) {
+    private final void setTipo(final TipoEstadoDomain tipo) {
 
-        this.tipoEstado = UtilObject.getDefault(tipoEstado, TipoEstadoDomain.getDefaultObject());
+        this.tipo = UtilObject.getDefault(tipo, TipoEstadoDomain.getDefaultObject());
     }
 
     public final UUID getIdentificador() {
@@ -52,8 +52,8 @@ public final class EstadoDomain {
         return nombre;
     }
 
-    public final TipoEstadoDomain getTipoEstado() {
-        return tipoEstado;
+    public final TipoEstadoDomain getTipo() {
+        return tipo;
     }
 
     public static EstadoDomain getDefaultObject(){

@@ -15,11 +15,11 @@ public final class PersonaDomain {
     private String primerApellido;
     private String segundoApellido;
     private String correoElectronico;
-    private PaisDomain indicadorPais;
-    private String numeroTelefonoMovil;
+    private PaisDomain paisTelefono;
+    private String numeroTelefono;
     private EstadoDomain estado;
-    private TipoRelacionInstitucionDomain tipoRelacionInstitucion;
-    public static PersonaDomain DEFAULT_OBJECT = new PersonaDomain();
+    private TipoRelacionInstitucionDomain relacionInstitucion;
+    public static final PersonaDomain DEFAULT_OBJECT = new PersonaDomain();
 
     private PersonaDomain() {
         super();
@@ -31,12 +31,12 @@ public final class PersonaDomain {
         setPrimerApellido(UtilText.getDefaultValue());
         setSegundoApellido(UtilText.getDefaultValue());
         setCorreoElectronico(UtilText.getDefaultValue());
-        setIndicadorPais(PaisDomain.getDefaultObject());
-        setNumeroTelefonoMovil(UtilText.getDefaultValue());
+        setPaisTelefono(PaisDomain.getDefaultObject());
+        setNumeroTelefono(UtilText.getDefaultValue());
         setEstado(EstadoDomain.getDefaultObject());
     }
 
-    public PersonaDomain(UUID identificador, TipoIdentificacionDomain tipoIdentificacionDTO, String numeroIdentificacion, String primerNombre, String segundoNombre, String primerApellido, String segundoApellido, String correoElectronico, PaisDomain indicadorPais, String numeroTelefonoMovil, EstadoDomain estado, TipoRelacionInstitucionDomain tipoRelacionInstitucion) {
+    public PersonaDomain(UUID identificador, TipoIdentificacionDomain tipoIdentificacionDTO, String numeroIdentificacion, String primerNombre, String segundoNombre, String primerApellido, String segundoApellido, String correoElectronico, PaisDomain paisTelefono, String numeroTelefono, EstadoDomain estado, TipoRelacionInstitucionDomain relacionInstitucion) {
         super();
         setIdentificador(identificador);
         setTipoIdentificacionDTO(tipoIdentificacionDTO);
@@ -46,9 +46,9 @@ public final class PersonaDomain {
         setPrimerApellido(primerApellido);
         setSegundoApellido(segundoApellido);
         setCorreoElectronico(correoElectronico);
-        setIndicadorPais(indicadorPais);
-        setNumeroTelefonoMovil(numeroTelefonoMovil);
-        setTipoRelacionInstitucion(tipoRelacionInstitucion);
+        setPaisTelefono(paisTelefono);
+        setNumeroTelefono(numeroTelefono);
+        setRelacionInstitucion(relacionInstitucion);
         setEstado(estado);
     }
 
@@ -84,20 +84,20 @@ public final class PersonaDomain {
         return correoElectronico;
     }
 
-    public PaisDomain getIndicadorPais() {
-        return indicadorPais;
+    public PaisDomain getPaisTelefono() {
+        return paisTelefono;
     }
 
-    public String getNumeroTelefonoMovil() {
-        return numeroTelefonoMovil;
+    public String getNumeroTelefono() {
+        return numeroTelefono;
     }
 
     public EstadoDomain getEstado() {
         return estado;
     }
 
-    public TipoRelacionInstitucionDomain getTipoRelacionInstitucion() {
-        return tipoRelacionInstitucion;
+    public TipoRelacionInstitucionDomain getRelacionInstitucion() {
+        return relacionInstitucion;
     }
 
     private void setIdentificador(final UUID identificador) {
@@ -132,20 +132,20 @@ public final class PersonaDomain {
         this.correoElectronico = UtilText.applyTrim(correoElectronico);
     }
 
-    private void setIndicadorPais(final PaisDomain indicadorPais) {
-        this.indicadorPais = UtilObject.getDefault(indicadorPais, PaisDomain.getDefaultObject());
+    private void setPaisTelefono(final PaisDomain paisTelefono) {
+        this.paisTelefono = UtilObject.getDefault(paisTelefono, PaisDomain.getDefaultObject());
     }
 
-    private void setNumeroTelefonoMovil(final String numeroTelefonoMovil) {
-        this.numeroTelefonoMovil = UtilText.applyTrim(numeroTelefonoMovil);
+    private void setNumeroTelefono(final String numeroTelefono) {
+        this.numeroTelefono = UtilText.applyTrim(numeroTelefono);
     }
 
     private void setEstado(EstadoDomain estado) {
         this.estado = UtilObject.getDefault(estado, EstadoDomain.getDefaultObject());
     }
 
-    private void setTipoRelacionInstitucion(TipoRelacionInstitucionDomain tipoRelacionInstitucion) {
-        this.tipoRelacionInstitucion = UtilObject.getDefault(tipoRelacionInstitucion, TipoRelacionInstitucionDomain.getDefaultObject());
+    private void setRelacionInstitucion(TipoRelacionInstitucionDomain relacionInstitucion) {
+        this.relacionInstitucion = UtilObject.getDefault(relacionInstitucion, TipoRelacionInstitucionDomain.getDefaultObject());
     }
     public static PersonaDomain getDefaultObject (){
         return DEFAULT_OBJECT;
