@@ -6,8 +6,10 @@ import java.util.UUID;
 import co.edu.uco.publiuco.business.assembler.concrete.AdministradorCategoriaAssembler;
 import co.edu.uco.publiuco.business.business.AdministradorCategoriaBusiness;
 import co.edu.uco.publiuco.business.domain.AdministradorCategoriaDomain;
+import co.edu.uco.publiuco.crosscutting.exception.PubliucoBusisnessException;
 import co.edu.uco.publiuco.data.dao.factory.DAOFactory;
 import co.edu.uco.publiuco.entities.AdministradorCategoriaEntity;
+import co.edu.uco.publiuco.utils.UtilUUID;
 
 public class AdministradorCategoriaBusinessImpl implements AdministradorCategoriaBusiness {
 
@@ -19,9 +21,26 @@ public class AdministradorCategoriaBusinessImpl implements AdministradorCategori
 
 	@Override
 	public final void register(AdministradorCategoriaDomain domain) {
-		final AdministradorCategoriaEntity entity = AdministradorCategoriaAssembler.getInstance()
-				.toEntityFromDomain(domain);
-		daoFactory.getAdministradorCategoriaDAO().create(entity);
+		
+		 UUID identificador;
+		 AdministradorCategoriaEntity entityTmp;
+		 List<AdministradorCategoriaEntity> result;
+		
+		do {
+			identificador = UtilUUID.generateNewUUID();
+			entityTmp = AdministradorCategoriaEntity.createWithIdentificador(identificador);
+			result = daoFactory.getAdministradorCategoriaDAO().read(entityTmp);
+		}while(!result.isEmpty());
+		
+		if(!result.isEmpty()) {
+			throw PubliucoBusisnessException.create("el usuario que desea crear ya existe. Por favor verifique los datos si es necesario");
+		}	
+		
+		final var domainToCreate = new AdministradorCategoriaDomain(identificador,domain.getPersona(),domain.getEstado());
+
+		
+		
+		
 	}
 
 	@Override
