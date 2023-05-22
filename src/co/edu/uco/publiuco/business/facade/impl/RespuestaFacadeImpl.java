@@ -1,12 +1,8 @@
 package co.edu.uco.publiuco.business.facade.impl;
 
-import co.edu.uco.publiuco.business.assembler.concrete.ReporteAssembler;
 import co.edu.uco.publiuco.business.assembler.concrete.RespuestaAssembler;
-import co.edu.uco.publiuco.business.business.EstadoBusiness;
 import co.edu.uco.publiuco.business.business.RespuestaBusiness;
-import co.edu.uco.publiuco.business.business.impl.EstadoBusinessImpl;
 import co.edu.uco.publiuco.business.business.impl.RespuestaBusinessImpl;
-import co.edu.uco.publiuco.business.domain.ReporteDomain;
 import co.edu.uco.publiuco.business.domain.RespuestaDomain;
 import co.edu.uco.publiuco.business.facade.RespuestaFacade;
 import co.edu.uco.publiuco.crosscutting.exception.PubliucoBusisnessException;

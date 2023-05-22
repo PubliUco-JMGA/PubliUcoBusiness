@@ -1,14 +1,8 @@
 package co.edu.uco.publiuco.business.facade.impl;
 
-import co.edu.uco.publiuco.business.assembler.concrete.EscritorAssembler;
-import co.edu.uco.publiuco.business.assembler.concrete.LectorAssembler;
 import co.edu.uco.publiuco.business.assembler.concrete.ObservacionRevisionAssembler;
-import co.edu.uco.publiuco.business.business.EstadoBusiness;
 import co.edu.uco.publiuco.business.business.ObservacionRevisionBusiness;
-import co.edu.uco.publiuco.business.business.impl.EstadoBusinessImpl;
 import co.edu.uco.publiuco.business.business.impl.ObservacionRevisionBusinessImpl;
-import co.edu.uco.publiuco.business.domain.EscritorDomain;
-import co.edu.uco.publiuco.business.domain.LectorDomain;
 import co.edu.uco.publiuco.business.domain.ObservacionRevisionDomain;
 import co.edu.uco.publiuco.business.facade.ObservacionRevisionFacade;
 import co.edu.uco.publiuco.crosscutting.exception.PubliucoBusisnessException;

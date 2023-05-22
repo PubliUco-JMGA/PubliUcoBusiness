@@ -70,7 +70,11 @@ public final class CategoriaDomain {
      }
 
     private void setCategoriaPadre(final CategoriaDomain categoriaPadre) {
-        this.categoriaPadre = UtilObject.getDefault(categoriaPadre, CategoriaDomain.getDefaultObject());
+    	if(tienePadre()) {
+            this.categoriaPadre = UtilObject.getDefault(categoriaPadre, getDefaultObject());
+        }else {
+			this.categoriaPadre = (CategoriaDomain) UtilObject.getDefaultValue();
+        } 
     }
 
     private void setNombre(final String nombre) {

@@ -1,12 +1,8 @@
 package co.edu.uco.publiuco.business.facade.impl;
 
-import co.edu.uco.publiuco.business.assembler.concrete.PlanCategoriaAssembler;
 import co.edu.uco.publiuco.business.assembler.concrete.PlanPublicacionAssembler;
-import co.edu.uco.publiuco.business.business.EstadoBusiness;
 import co.edu.uco.publiuco.business.business.PlanPublicacionBusiness;
-import co.edu.uco.publiuco.business.business.impl.EstadoBusinessImpl;
 import co.edu.uco.publiuco.business.business.impl.PlanPublicacionBusinessImpl;
-import co.edu.uco.publiuco.business.domain.PlanCategoriaDomain;
 import co.edu.uco.publiuco.business.domain.PlanPublicacionDomain;
 import co.edu.uco.publiuco.business.facade.PlanPublicacionFacade;
 import co.edu.uco.publiuco.crosscutting.exception.PubliucoBusisnessException;

@@ -1,8 +1,6 @@
 package co.edu.uco.publiuco.business.facade.impl;
 
 import java.util.List;
-import java.util.UUID;
-
 import co.edu.uco.publiuco.business.assembler.concrete.EstadoAssembler;
 import co.edu.uco.publiuco.business.domain.EstadoDomain;
 import co.edu.uco.publiuco.business.business.EstadoBusiness;

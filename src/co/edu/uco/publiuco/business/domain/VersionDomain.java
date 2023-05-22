@@ -100,7 +100,11 @@ public final class VersionDomain {
 
 
     private void setVersionAnterior(VersionDomain versionAnterior) {
-        this.versionAnterior = UtilObject.getDefault(versionAnterior, VersionDomain.getDefaultObject());
+    	if(tieneVersionAnterior()) {
+            this.versionAnterior = UtilObject.getDefault(versionAnterior, getDefaultObject());
+        }else {
+			this.versionAnterior = (VersionDomain) UtilObject.getDefaultValue();
+        }  
     }
 
     private void setNumeroVersion(final Integer numeroVersion) {

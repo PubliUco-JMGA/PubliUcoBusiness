@@ -99,7 +99,11 @@ public final class ComentarioLectorDomain {
 	}
 
 	private void setComentarioPadre(final ComentarioLectorDomain comentarioPadre) {
-		this.comentarioPadre = UtilObject.getDefault(comentarioPadre, ComentarioLectorDomain.getDefaultObject());
+		if(tienePadre()) {
+			this.comentarioPadre = UtilObject.getDefault(comentarioPadre, getDefaultObject());
+		}else {
+			this.comentarioPadre = (ComentarioLectorDomain) UtilObject.getDefaultValue();
+		}	
 	}
 
 	private void setEstado(final EstadoDomain estado) {
