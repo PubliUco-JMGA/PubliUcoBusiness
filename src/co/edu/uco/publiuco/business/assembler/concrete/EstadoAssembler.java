@@ -17,22 +17,22 @@ public final class EstadoAssembler implements Assembler<EstadoDomain, EstadoDTO,
     @Override
     public EstadoDTO toDTOFromDomain(EstadoDomain domain) {
         return EstadoDTO.create().setIdentificador(domain.getIdentificador()).setNombre(domain.getNombre()).
-                setTipo(TipoEstadoAssembler.getInstance().toDTOFromDomain(domain.getTipo()));
+                setTipo(TipoEstadoAssembler.getInstance().toDTOFromDomain(domain.getTipo()).setDescripcion(domain.getDescripcion()));
     }
 
     @Override
     public EstadoDomain toDomainFromDTO(EstadoDTO dto) {
-        return new EstadoDomain(dto.getIdentificador(),dto.getNombre(), TipoEstadoAssembler.getInstance().toDomainFromDTO(dto.getTipo()));
+        return new EstadoDomain(dto.getIdentificador(),dto.getNombre(), TipoEstadoAssembler.getInstance().toDomainFromDTO(dto.getTipo()),dto.getDescripcion());
     }
 
     @Override
     public EstadoEntity toEntityFromDomain(EstadoDomain domain) {
-        return new EstadoEntity(domain.getIdentificador(),domain.getNombre(), TipoEstadoAssembler.getInstance().toEntityFromDomain(domain.getTipo()));
+        return new EstadoEntity(domain.getIdentificador(),domain.getNombre(), TipoEstadoAssembler.getInstance().toEntityFromDomain(domain.getTipo()),domain.getDescripcion());
     }
 
     @Override
     public EstadoDomain toDomainFromEntity(EstadoEntity entity) {
-        return new EstadoDomain(entity.getIdentificador(), entity.getNombre(), TipoEstadoAssembler.getInstance().toDomainFromEntity(entity.getTipo()));
+        return new EstadoDomain(entity.getIdentificador(), entity.getNombre(), TipoEstadoAssembler.getInstance().toDomainFromEntity(entity.getTipo()), entity.getDescripcion());
     }
 
     @Override

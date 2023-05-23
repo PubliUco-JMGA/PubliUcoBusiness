@@ -5,8 +5,6 @@ import java.util.List;
 import co.edu.uco.publiuco.business.business.TipoEstadoBusiness;
 import co.edu.uco.publiuco.business.domain.TipoEstadoDomain;
 import co.edu.uco.publiuco.data.dao.factory.DAOFactory;
-import co.edu.uco.publiuco.entities.TipoEstadoEntity;
-import co.edu.uco.publiuco.business.assembler.concrete.TipoEstadoAssembler;
 
 public class TipoEstadoBusinessImp implements TipoEstadoBusiness {
 

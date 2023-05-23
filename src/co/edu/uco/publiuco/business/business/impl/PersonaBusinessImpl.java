@@ -1,11 +1,9 @@
 package co.edu.uco.publiuco.business.business.impl;
 
-import co.edu.uco.publiuco.business.assembler.concrete.PerfilAssembler;
 import co.edu.uco.publiuco.business.assembler.concrete.PersonaAssembler;
 import co.edu.uco.publiuco.business.business.PersonaBusiness;
 import co.edu.uco.publiuco.business.domain.PersonaDomain;
 import co.edu.uco.publiuco.data.dao.factory.DAOFactory;
-import co.edu.uco.publiuco.entities.PerfilEntity;
 import co.edu.uco.publiuco.entities.PersonaEntity;
 
 import java.util.List;

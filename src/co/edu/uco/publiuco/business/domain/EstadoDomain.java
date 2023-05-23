@@ -12,6 +12,7 @@ public final class EstadoDomain {
 
     private UUID identificador;
     private String nombre;
+    private String descripcion;
     private TipoEstadoDomain tipo;
     public static final EstadoDomain DEFAULT_OBJECT = new EstadoDomain();
 
@@ -20,18 +21,30 @@ public final class EstadoDomain {
         super();
         setIdentificador(UtilUUID.getDefaultValue());
         setNombre(UtilText.getDefaultValue());
+        setDescripcion(UtilText.getDefaultValue());
         setTipo(TipoEstadoDomain.getDefaultObject());
     }
 
 
-    public EstadoDomain(UUID identificador, String nombre, TipoEstadoDomain tipo) {
+    public EstadoDomain(UUID identificador, String nombre, TipoEstadoDomain tipo,String descripcion) {
         super();
         setIdentificador(identificador);
         setNombre(nombre);
+        setDescripcion(descripcion);
         setTipo(tipo);
     }
+    
+    public String getDescripcion() {
+		return descripcion;
+	}
 
-    private final void setIdentificador(final UUID identificador) {
+
+	public void setDescripcion(String descripcion) {
+		this.descripcion = UtilText.applyTrim(descripcion);
+	}
+
+
+	private final void setIdentificador(final UUID identificador) {
         this.identificador = UtilUUID.getDefault(identificador);
     }
 
