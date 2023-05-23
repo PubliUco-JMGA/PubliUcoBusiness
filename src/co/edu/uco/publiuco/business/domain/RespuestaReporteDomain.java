@@ -37,9 +37,8 @@ public class RespuestaReporteDomain {
 	public UUID getIdentificador() {
 		return identificador;
 	}
-	public RespuestaReporteDomain setIdentificador(UUID identificador) {
+	private void setIdentificador(UUID identificador) {
 		this.identificador = identificador;
-		return this;
 	}
 	public ReporteDomain getReporte() {
 		return reporte;

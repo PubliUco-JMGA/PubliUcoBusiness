@@ -9,7 +9,7 @@ public class LectorDomain {
     private UUID identificador;
     private PersonaDomain datosPersona;
     private EstadoDomain estado;
-    public static LectorDomain DEFAULT_OBJECT= new LectorDomain();
+    public static final LectorDomain DEFAULT_OBJECT= new LectorDomain();
 
     private LectorDomain() {
         super();
@@ -37,9 +37,8 @@ public class LectorDomain {
         return estado;
     }
 
-    public LectorDomain setIdentificador(UUID identificador) {
+    private void setIdentificador(UUID identificador) {
         this.identificador = UtilUUID.getDefault(identificador);
-        return this;
     }
 
     private void setDatosPersona(PersonaDomain datosPersona) {

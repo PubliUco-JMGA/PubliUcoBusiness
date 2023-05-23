@@ -73,7 +73,7 @@ public final class CategoriaDomain {
     	if(tienePadre()) {
             this.categoriaPadre = UtilObject.getDefault(categoriaPadre, getDefaultObject());
         }else {
-			this.categoriaPadre = (CategoriaDomain) UtilObject.getDefaultValue();
+			this.categoriaPadre = (CategoriaDomain) UtilObject.getNullValue();
         } 
     }
 

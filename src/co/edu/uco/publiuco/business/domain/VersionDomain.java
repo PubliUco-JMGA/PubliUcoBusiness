@@ -103,7 +103,7 @@ public final class VersionDomain {
     	if(tieneVersionAnterior()) {
             this.versionAnterior = UtilObject.getDefault(versionAnterior, getDefaultObject());
         }else {
-			this.versionAnterior = (VersionDomain) UtilObject.getDefaultValue();
+			this.versionAnterior = (VersionDomain) UtilObject.getNullValue();
         }  
     }
 

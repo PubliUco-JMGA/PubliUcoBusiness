@@ -102,7 +102,7 @@ public final class ComentarioLectorDomain {
 		if(tienePadre()) {
 			this.comentarioPadre = UtilObject.getDefault(comentarioPadre, getDefaultObject());
 		}else {
-			this.comentarioPadre = (ComentarioLectorDomain) UtilObject.getDefaultValue();
+			this.comentarioPadre = (ComentarioLectorDomain) UtilObject.getNullValue();
 		}	
 	}
 

@@ -4,11 +4,13 @@ import java.util.List;
 import java.util.UUID;
 
 import co.edu.uco.publiuco.business.assembler.concrete.AdministradorCategoriaAssembler;
+import co.edu.uco.publiuco.business.assembler.concrete.CalificacionAssembler;
 import co.edu.uco.publiuco.business.business.AdministradorCategoriaBusiness;
 import co.edu.uco.publiuco.business.domain.AdministradorCategoriaDomain;
 import co.edu.uco.publiuco.crosscutting.exception.PubliucoBusisnessException;
 import co.edu.uco.publiuco.data.dao.factory.DAOFactory;
 import co.edu.uco.publiuco.entities.AdministradorCategoriaEntity;
+import co.edu.uco.publiuco.entities.CalificacionEntity;
 import co.edu.uco.publiuco.utils.UtilUUID;
 
 public class AdministradorCategoriaBusinessImpl implements AdministradorCategoriaBusiness {
@@ -37,7 +39,9 @@ public class AdministradorCategoriaBusinessImpl implements AdministradorCategori
 		}	
 		
 		final var domainToCreate = new AdministradorCategoriaDomain(identificador,domain.getPersona(),domain.getEstado());
-
+		
+		final AdministradorCategoriaEntity entity = AdministradorCategoriaAssembler.getInstance().toEntityFromDomain(domainToCreate);
+		daoFactory.getAdministradorCategoriaDAO().create(entity);	
 		
 		
 		
