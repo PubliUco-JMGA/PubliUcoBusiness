@@ -18,12 +18,12 @@ public class TipoRelacionInstitucionBusinessImpl implements TipoRelacionInstituc
 
 	@Override
 	public List<TipoRelacionInstitucionDomain> list(TipoRelacionInstitucionDomain domain) {
-		final TipoRelacionInstitucionEntity entity = TipoRelacionInstitucionAssembler.getInstance()
-				.toEntityFromDomain(domain);
+		final TipoRelacionInstitucionEntity entity = TipoRelacionInstitucionAssembler.getInstance().toEntityFromDomain(domain);
 
-		final List<TipoRelacionInstitucionEntity> result = daoFactory.getTipoRelacionInstitucionDAO().read(entity);
+		final List<TipoRelacionInstitucionEntity> resultEntityList = daoFactory.getTipoRelacionInstitucionDAO().read(entity);
 
-		return null;
+		return TipoRelacionInstitucionAssembler.getInstance().toDomainFromEntityList(resultEntityList);
+	
 	}
 
 

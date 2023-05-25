@@ -45,7 +45,7 @@ public final class TipoRelacionInstitucionFacadeImpl implements TipoRelacionInst
 
             throw PubliucoBusisnessException.create(technicalMessage, userMessage, exception);
         } finally {
-            daoFactory.closeConection();
+            daoFactory.closeConnection();
 
         }
     }

@@ -44,7 +44,7 @@ public final class TipoComentarioRevisorFacadeImpl implements TipoComentarioRevi
 
             throw PubliucoBusisnessException.create(technicalMessage, userMessage, exception);
         } finally {
-            daoFactory.closeConection();
+            daoFactory.closeConnection();
 
         }
     }

@@ -44,7 +44,7 @@ public class RespuestaReporteFacadeImpl implements RespuestaReporteFacade{
 
 	            throw PubliucoBusisnessException.create(technicalMessage, userMessage, exception);
 	        } finally {
-	            daoFactory.closeConection();
+	            daoFactory.closeConnection();
 	        }
 	    }
 
@@ -69,7 +69,7 @@ public class RespuestaReporteFacadeImpl implements RespuestaReporteFacade{
 
 	            throw PubliucoBusisnessException.create(technicalMessage, userMessage, exception);
 	        } finally {
-	            daoFactory.closeConection();
+	            daoFactory.closeConnection();
 
 	        }
 	    }
@@ -95,7 +95,7 @@ public class RespuestaReporteFacadeImpl implements RespuestaReporteFacade{
 
 	            throw PubliucoBusisnessException.create(technicalMessage, userMessage, exception);
 	        } finally {
-	            daoFactory.closeConection();
+	            daoFactory.closeConnection();
 	        }
 	    }
 
@@ -118,7 +118,7 @@ public class RespuestaReporteFacadeImpl implements RespuestaReporteFacade{
 
 	            throw PubliucoBusisnessException.create(technicalMessage, userMessage, exception);
 	        } finally {
-	            daoFactory.closeConection();
+	            daoFactory.closeConnection();
 	        }
 	    }
 }

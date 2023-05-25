@@ -8,6 +8,7 @@ import co.edu.uco.publiuco.business.business.ComentarioLectorBusiness;
 import co.edu.uco.publiuco.business.domain.ComentarioLectorDomain;
 import co.edu.uco.publiuco.data.dao.factory.DAOFactory;
 import co.edu.uco.publiuco.entities.ComentarioLectorEntity;
+import co.edu.uco.publiuco.utils.UtilUUID;
 
 public class ComentarioLectorBusinessImpl implements ComentarioLectorBusiness {
 
@@ -19,18 +20,31 @@ public class ComentarioLectorBusinessImpl implements ComentarioLectorBusiness {
 
 	@Override
 	public void register(ComentarioLectorDomain domain) {
-		final ComentarioLectorEntity entity = ComentarioLectorAssembler.getInstance().toEntityFromDomain(domain);
-		daoFactory.getComentarioLectorDAO().create(entity);
+		UUID identificador;
+		ComentarioLectorEntity entityTmp;
+		 List<ComentarioLectorEntity> result;
+		
+		do {
+			identificador = UtilUUID.generateNewUUID();
+			entityTmp = ComentarioLectorEntity.create().setIdentificador(identificador);
+			result = daoFactory.getComentarioLectorDAO().read(entityTmp);
+		}while(!result.isEmpty());
+		
+		final var domainToCreate = new ComentarioLectorDomain(identificador,domain.getLector(),domain.getPublicacion(),domain.getComentarioPadre(),domain.getCotenido(),domain.getFechaComentario(),domain.getEstado(), domain.tienePadre());
+		
+		final ComentarioLectorEntity entity = ComentarioLectorAssembler.getInstance().toEntityFromDomain(domainToCreate);
+		daoFactory.getComentarioLectorDAO().create(entity);	
 
 	}
 
 	@Override
 	public List<ComentarioLectorDomain> list(ComentarioLectorDomain domain) {
-		final ComentarioLectorEntity entity = ComentarioLectorAssembler.getInstance().toEntityFromDomain(domain);
+		ComentarioLectorEntity entity = ComentarioLectorAssembler.getInstance().toEntityFromDomain(domain);
 
-		final List<ComentarioLectorEntity> result = daoFactory.getComentarioLectorDAO().read(entity);
+		final List<ComentarioLectorEntity> resultEntityList = daoFactory.getComentarioLectorDAO().read(entity);
 
-		return null;
+		return ComentarioLectorAssembler.getInstance().toDomainFromEntityList(resultEntityList);
+	
 	}
 
 	@Override

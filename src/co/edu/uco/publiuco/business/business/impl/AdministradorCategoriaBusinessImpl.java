@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.UUID;
 
 import co.edu.uco.publiuco.business.assembler.concrete.AdministradorCategoriaAssembler;
+import co.edu.uco.publiuco.business.assembler.concrete.PersonaAssembler;
 import co.edu.uco.publiuco.business.business.AdministradorCategoriaBusiness;
 import co.edu.uco.publiuco.business.domain.AdministradorCategoriaDomain;
 import co.edu.uco.publiuco.crosscutting.exception.PubliucoBusisnessException;
@@ -31,6 +32,9 @@ public class AdministradorCategoriaBusinessImpl implements AdministradorCategori
 			entityTmp = AdministradorCategoriaEntity.create().setIdentificador(identificador);
 			result = daoFactory.getAdministradorCategoriaDAO().read(entityTmp);
 		}while(!result.isEmpty());
+		
+		entityTmp = AdministradorCategoriaEntity.create().setPersona(PersonaAssembler.getInstance().toEntityFromDomain(domain.getPersona()));
+		result = daoFactory.getAdministradorCategoriaDAO().read(entityTmp);
 		
 		if(!result.isEmpty()) {
 			throw PubliucoBusisnessException.create("el usuario que desea crear ya existe. Por favor verifique los datos si es necesario");

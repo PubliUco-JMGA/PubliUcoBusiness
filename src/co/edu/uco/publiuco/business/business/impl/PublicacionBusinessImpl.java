@@ -28,9 +28,10 @@ public class PublicacionBusinessImpl implements PublicacionBusiness {
 	public List<PublicacionDomain> list(PublicacionDomain domain) {
 		final PublicacionEntity entity = PublicacionAssembler.getInstance().toEntityFromDomain(domain);
 
-		final List<PublicacionEntity> result = daoFactory.getPublicacionDAO().read(entity);
+		final List<PublicacionEntity> resultEntityList = daoFactory.getPublicacionDAO().read(entity);
 
-		return null;
+		return PublicacionAssembler.getInstance().toDomainFromEntityList(resultEntityList);
+	
 	}
 
 	@Override

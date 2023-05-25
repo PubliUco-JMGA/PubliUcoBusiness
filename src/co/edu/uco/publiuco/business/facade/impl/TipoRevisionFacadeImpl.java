@@ -44,7 +44,7 @@ public final class TipoRevisionFacadeImpl implements TipoRevisionFacade {
 
             throw PubliucoBusisnessException.create(technicalMessage, userMessage, exception);
         } finally {
-            daoFactory.closeConection();
+            daoFactory.closeConnection();
 
         }
     }

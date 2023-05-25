@@ -15,11 +15,13 @@ public final class CategoriaDomain {
     private String descripcion;
     private EstadoDomain estado;
     public static final CategoriaDomain DEFAULT_OBJECT = new CategoriaDomain();
+    private static final CategoriaDomain PADRE = new CategoriaDomain(UtilUUID.generateNewUUID(), null, "Padre", UtilText.getDefaultValue(), EstadoDomain.getDefaultObject(), UtilBoolean.getDefaultValue());
+
 
     private CategoriaDomain() {
         super();
         setIdentificador(UtilUUID.getDefaultValue());
-        setCategoriaPadre(CategoriaDomain.getDefaultObject());
+        setCategoriaPadre(PADRE);
         setNombre(UtilText.getDefaultValue());
         setDescripcion(UtilText.getDefaultValue());
         setEstado(EstadoDomain.getDefaultObject());

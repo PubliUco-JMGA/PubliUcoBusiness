@@ -45,7 +45,7 @@ public final class TipoEstadoFacadeImpl implements TipoEstadoFacade {
 
             throw PubliucoBusisnessException.create(technicalMessage, userMessage, exception);
         } finally {
-            daoFactory.closeConection();
+            daoFactory.closeConnection();
 
         }
     }

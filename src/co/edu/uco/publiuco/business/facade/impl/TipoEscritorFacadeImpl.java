@@ -44,7 +44,7 @@ public final class TipoEscritorFacadeImpl implements TipoEscritorFacade {
 
             throw PubliucoBusisnessException.create(technicalMessage, userMessage, exception);
         } finally {
-            daoFactory.closeConection();
+            daoFactory.closeConnection();
 
         }
     }

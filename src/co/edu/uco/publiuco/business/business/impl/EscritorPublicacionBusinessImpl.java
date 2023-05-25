@@ -8,6 +8,7 @@ import co.edu.uco.publiuco.business.business.EscritorPublicacionBusiness;
 import co.edu.uco.publiuco.business.domain.EscritorPublicacionDomain;
 import co.edu.uco.publiuco.data.dao.factory.DAOFactory;
 import co.edu.uco.publiuco.entities.EscritorPublicacionEntity;
+import co.edu.uco.publiuco.utils.UtilUUID;
 
 public class EscritorPublicacionBusinessImpl implements EscritorPublicacionBusiness {
 
@@ -19,8 +20,20 @@ public class EscritorPublicacionBusinessImpl implements EscritorPublicacionBusin
 
 	@Override
 	public void register(EscritorPublicacionDomain domain) {
-		final EscritorPublicacionEntity entity = EscritorPublicacionAssembler.getInstance().toEntityFromDomain(domain);
-		daoFactory.getEscritorPublicacionDAO().create(entity);
+		UUID identificador;
+		EscritorPublicacionEntity entityTmp;
+		 List<EscritorPublicacionEntity> result;
+		
+		do {
+			identificador = UtilUUID.generateNewUUID();
+			entityTmp = EscritorPublicacionEntity.create().setIdentificador(identificador);
+			result = daoFactory.getEscritorPublicacionDAO().read(entityTmp);
+		}while(!result.isEmpty());
+		
+		final var domainToCreate = new EscritorPublicacionDomain(identificador,domain.getPublicacion(),domain.getEscritor(),domain.getTipo());
+		
+		final EscritorPublicacionEntity entity = EscritorPublicacionAssembler.getInstance().toEntityFromDomain(domainToCreate);
+		daoFactory.getEscritorPublicacionDAO().create(entity);	
 
 	}
 
@@ -28,9 +41,10 @@ public class EscritorPublicacionBusinessImpl implements EscritorPublicacionBusin
 	public List<EscritorPublicacionDomain> list(EscritorPublicacionDomain domain) {
 		final EscritorPublicacionEntity entity = EscritorPublicacionAssembler.getInstance().toEntityFromDomain(domain);
 
-		final List<EscritorPublicacionEntity> result = daoFactory.getEscritorPublicacionDAO().read(entity);
+		final List<EscritorPublicacionEntity> resultEntityList = daoFactory.getEscritorPublicacionDAO().read(entity);
 
-		return null;
+		return EscritorPublicacionAssembler.getInstance().toDomainFromEntityList(resultEntityList);
+	
 	}
 
 	@Override

@@ -8,6 +8,7 @@ import co.edu.uco.publiuco.business.business.EscritorBusiness;
 import co.edu.uco.publiuco.business.domain.EscritorDomain;
 import co.edu.uco.publiuco.data.dao.factory.DAOFactory;
 import co.edu.uco.publiuco.entities.EscritorEntity;
+import co.edu.uco.publiuco.utils.UtilUUID;
 
 public class EscritorBusinessImpl implements EscritorBusiness {
 
@@ -19,18 +20,31 @@ public class EscritorBusinessImpl implements EscritorBusiness {
 
 	@Override
 	public void register(EscritorDomain domain) {
-		final EscritorEntity entity = EscritorAssembler.getInstance().toEntityFromDomain(domain);
-		daoFactory.getEscritorDAO().create(entity);
-
+		UUID identificador;
+		EscritorEntity entityTmp;
+		 List<EscritorEntity> result;
+		
+		do {
+			identificador = UtilUUID.generateNewUUID();
+			entityTmp = EscritorEntity.create().setIdentificador(identificador);
+			result = daoFactory.getEscritorDAO().read(entityTmp);
+		}while(!result.isEmpty());
+		
+		final var domainToCreate = new EscritorDomain(identificador,domain.getDatosPersona(),domain.getEstado());
+		
+		final EscritorEntity entity = EscritorAssembler.getInstance().toEntityFromDomain(domainToCreate);
+		daoFactory.getEscritorDAO().create(entity);	
+	
 	}
 
 	@Override
 	public List<EscritorDomain> list(EscritorDomain domain) {
 		final EscritorEntity entity = EscritorAssembler.getInstance().toEntityFromDomain(domain);
 
-		final List<EscritorEntity> result = daoFactory.getEscritorDAO().read(entity);
+		final List<EscritorEntity> resultEntityList = daoFactory.getEscritorDAO().read(entity);
 
-		return null;
+		return EscritorAssembler.getInstance().toDomainFromEntityList(resultEntityList);
+	
 	}
 
 	@Override

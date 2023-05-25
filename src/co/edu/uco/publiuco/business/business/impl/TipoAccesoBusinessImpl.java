@@ -20,9 +20,10 @@ public class TipoAccesoBusinessImpl implements TipoAccesoBusiness {
 	public List<TipoAccesoDomain> list(TipoAccesoDomain domain) {
 		final TipoAccesoEntity entity = TipoAccesoAssembler.getInstance().toEntityFromDomain(domain);
 
-		final List<TipoAccesoEntity> result = daoFactory.getTipoAccesoDAO().read(entity);
+		final List<TipoAccesoEntity> resultEntityList = daoFactory.getTipoAccesoDAO().read(entity);
 
-		return null;
+		return TipoAccesoAssembler.getInstance().toDomainFromEntityList(resultEntityList);
+	
 	}
 
 

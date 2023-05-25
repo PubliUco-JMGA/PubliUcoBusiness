@@ -45,7 +45,7 @@ public final class TipoIdentificacionFacadeImpl implements TipoIdentificacionFac
 
             throw PubliucoBusisnessException.create(technicalMessage, userMessage, exception);
         } finally {
-            daoFactory.closeConection();
+            daoFactory.closeConnection();
 
         }
     }

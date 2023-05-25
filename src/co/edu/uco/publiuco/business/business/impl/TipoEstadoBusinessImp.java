@@ -2,9 +2,11 @@ package co.edu.uco.publiuco.business.business.impl;
 
 import java.util.List;
 
+import co.edu.uco.publiuco.business.assembler.concrete.TipoEstadoAssembler;
 import co.edu.uco.publiuco.business.business.TipoEstadoBusiness;
 import co.edu.uco.publiuco.business.domain.TipoEstadoDomain;
 import co.edu.uco.publiuco.data.dao.factory.DAOFactory;
+import co.edu.uco.publiuco.entities.TipoEstadoEntity;
 
 public class TipoEstadoBusinessImp implements TipoEstadoBusiness {
 
@@ -16,8 +18,11 @@ public class TipoEstadoBusinessImp implements TipoEstadoBusiness {
 
 	@Override
 	public List<TipoEstadoDomain> list(TipoEstadoDomain domain) {
-		// TODO Auto-generated method stub
-		return null;
+		final TipoEstadoEntity entity = TipoEstadoAssembler.getInstance().toEntityFromDomain(domain);
+
+		final List<TipoEstadoEntity> resultEntityList = daoFactory.getTipoEstadoDAO().read(entity);
+
+		return TipoEstadoAssembler.getInstance().toDomainFromEntityList(resultEntityList);
 	}
 
 

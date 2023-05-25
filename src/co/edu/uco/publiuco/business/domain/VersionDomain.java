@@ -16,13 +16,14 @@ public final class VersionDomain {
     private String resumen;
     private String cuerpo;
     private EstadoDomain estado;
+    private static final VersionDomain VERSION_POR_DEFECTO = new VersionDomain(UtilUUID.getDefaultValue(),null,UtilNumber.getIntegerDefaultValue(),UtilDate.getDefaultValue(),UtilDate.getDefaultValue(),UtilText.getDefaultValue(),UtilText.getDefaultValue(),UtilText.getDefaultValue(),EstadoDomain.getDefaultObject(),UtilBoolean.getDefaultValue()); 
 
     public static final VersionDomain DEFAULT_OBJECT = new VersionDomain();
 
 
     private VersionDomain() {
         setIdentificador(UtilUUID.getDefaultValue());
-        setVersionAnterior(getDefaultObject());
+        setVersionAnterior(VERSION_POR_DEFECTO);
         setNumeroVersion(UtilNumber.getIntegerDefaultValue());
         setFechaCreacion(UtilDate.getDefaultValue());
         setFechaUltimaModificacion(UtilDate.getDefaultValue());

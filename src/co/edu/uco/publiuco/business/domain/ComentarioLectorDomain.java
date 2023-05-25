@@ -19,6 +19,7 @@ public final class ComentarioLectorDomain {
 	private LocalDateTime fechaComentario;
 	private EstadoDomain estado;
 	public static final ComentarioLectorDomain DEFAULT_OBJECT = new ComentarioLectorDomain();
+	private static final ComentarioLectorDomain PADRE = new ComentarioLectorDomain(UtilUUID.generateNewUUID(),LectorDomain.getDefaultObject(),PublicacionDomain.getDefaultObject(),null,UtilText.getDefaultValue(),UtilDate.getDefaultValue(),EstadoDomain.getDefaultObject(),UtilBoolean.getDefaultValue());
 
 
 	private ComentarioLectorDomain() {
@@ -26,7 +27,7 @@ public final class ComentarioLectorDomain {
 		setIdentificador(UtilUUID.getDefaultValue());
 		setLector(LectorDomain.getDefaultObject());
 		setPublicacion(PublicacionDomain.getDefaultObject());
-		setComentarioPadre(getDefaultObject());
+		setComentarioPadre(PADRE);
 		setContenido(UtilText.getDefaultValue());
 		setFechaComentario(UtilDate.getDefaultValue());
 		setEstado(EstadoDomain.getDefaultObject() );

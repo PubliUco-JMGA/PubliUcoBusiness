@@ -45,7 +45,7 @@ public final class TipoAccesoFacadeImpl implements TipoAccesoFacade {
 
             throw PubliucoBusisnessException.create(technicalMessage, userMessage, exception);
         } finally {
-            daoFactory.closeConection();
+            daoFactory.closeConnection();
 
         }
     }

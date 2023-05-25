@@ -25,11 +25,12 @@ public class PersonaBusinessImpl implements PersonaBusiness {
 
     @Override
     public List<PersonaDomain> list(PersonaDomain domain) {
-        final PersonaEntity entity = PersonaAssembler.getInstance().toEntityFromDomain(domain);
+    	final PersonaEntity entity = PersonaAssembler.getInstance().toEntityFromDomain(domain);
 
-        final List<PersonaEntity> result = daoFactory.getPersonaDAO().read(entity);
+		final List<PersonaEntity> resultEntityList = daoFactory.getPersonaDAO().read(entity);
 
-        return null;
+		return PersonaAssembler.getInstance().toDomainFromEntityList(resultEntityList);
+	
     }
 
     @Override
