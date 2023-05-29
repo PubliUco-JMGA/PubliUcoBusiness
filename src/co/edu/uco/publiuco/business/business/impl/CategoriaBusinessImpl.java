@@ -3,18 +3,11 @@ package co.edu.uco.publiuco.business.business.impl;
 import java.util.List;
 import java.util.UUID;
 
-import co.edu.uco.publiuco.business.assembler.concrete.AdministradorCategoriaAssembler;
 import co.edu.uco.publiuco.business.assembler.concrete.CategoriaAssembler;
-import co.edu.uco.publiuco.business.assembler.concrete.PersonaAssembler;
 import co.edu.uco.publiuco.business.business.CategoriaBusiness;
-import co.edu.uco.publiuco.business.domain.AdministradorCategoriaDomain;
 import co.edu.uco.publiuco.business.domain.CategoriaDomain;
-import co.edu.uco.publiuco.crosscutting.exception.PubliucoBusisnessException;
 import co.edu.uco.publiuco.data.dao.factory.DAOFactory;
-import co.edu.uco.publiuco.entities.AdministradorCategoriaEntity;
-import co.edu.uco.publiuco.entities.CalificacionEntity;
 import co.edu.uco.publiuco.entities.CategoriaEntity;
-import co.edu.uco.publiuco.utils.UtilUUID;
 
 public class CategoriaBusinessImpl implements CategoriaBusiness {
 

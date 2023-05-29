@@ -16,7 +16,9 @@ public final class VersionDomain {
     private String resumen;
     private String cuerpo;
     private EstadoDomain estado;
-    private static final VersionDomain VERSION_POR_DEFECTO = new VersionDomain(UtilUUID.getDefaultValue(),null,UtilNumber.getIntegerDefaultValue(),UtilDate.getDefaultValue(),UtilDate.getDefaultValue(),UtilText.getDefaultValue(),UtilText.getDefaultValue(),UtilText.getDefaultValue(),EstadoDomain.getDefaultObject(),UtilBoolean.getDefaultValue()); 
+    private static final String UUID_VERSION_POR_DEFECTO = "";
+
+    private static final VersionDomain VERSION_POR_DEFECTO = new VersionDomain(UtilUUID.generateUUIDFromString(UUID_VERSION_POR_DEFECTO),null,UtilNumber.getIntegerDefaultValue(),UtilDate.getDefaultValue(),UtilDate.getDefaultValue(),UtilText.getDefaultValue(),UtilText.getDefaultValue(),UtilText.getDefaultValue(),EstadoDomain.getDefaultObject(),UtilBoolean.getDefaultValue()); 
 
     public static final VersionDomain DEFAULT_OBJECT = new VersionDomain();
 
@@ -49,7 +51,7 @@ public final class VersionDomain {
     }
 
     
-    public boolean tieneVersionAnterior() {
+    public boolean isTieneVersionAnterior() {
 		return tieneVersionAnterior;
 	}
 
@@ -101,10 +103,10 @@ public final class VersionDomain {
 
 
     private void setVersionAnterior(VersionDomain versionAnterior) {
-    	if(tieneVersionAnterior()) {
+    	if(isTieneVersionAnterior()) {
             this.versionAnterior = UtilObject.getDefault(versionAnterior, getDefaultObject());
         }else {
-			this.versionAnterior = (VersionDomain) UtilObject.getNullValue();
+			this.versionAnterior = VERSION_POR_DEFECTO;
         }  
     }
 

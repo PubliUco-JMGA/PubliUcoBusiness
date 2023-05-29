@@ -19,7 +19,9 @@ public final class ComentarioLectorDomain {
 	private LocalDateTime fechaComentario;
 	private EstadoDomain estado;
 	public static final ComentarioLectorDomain DEFAULT_OBJECT = new ComentarioLectorDomain();
-	private static final ComentarioLectorDomain PADRE = new ComentarioLectorDomain(UtilUUID.generateNewUUID(),LectorDomain.getDefaultObject(),PublicacionDomain.getDefaultObject(),null,UtilText.getDefaultValue(),UtilDate.getDefaultValue(),EstadoDomain.getDefaultObject(),UtilBoolean.getDefaultValue());
+	private static final String UUID_COMENTARIO_RAIZ = "e1197bb4-2978-49f8-baaa-fd69d694dffa";
+
+	private static final ComentarioLectorDomain PADRE = new ComentarioLectorDomain(UtilUUID.generateUUIDFromString(UUID_COMENTARIO_RAIZ),LectorDomain.getDefaultObject(),PublicacionDomain.getDefaultObject(),null,UtilText.getDefaultValue(),UtilDate.getDefaultValue(),EstadoDomain.getDefaultObject(),UtilBoolean.getDefaultValue());
 
 
 	private ComentarioLectorDomain() {
@@ -49,7 +51,7 @@ public final class ComentarioLectorDomain {
 
 	
 
-	public boolean tienePadre() {
+	public boolean isTienePadre() {
 		return tienePadre;
 	}
 
@@ -100,10 +102,10 @@ public final class ComentarioLectorDomain {
 	}
 
 	private void setComentarioPadre(final ComentarioLectorDomain comentarioPadre) {
-		if(tienePadre()) {
+		if(isTienePadre()) {
 			this.comentarioPadre = UtilObject.getDefault(comentarioPadre, getDefaultObject());
 		}else {
-			this.comentarioPadre = (ComentarioLectorDomain) UtilObject.getNullValue();
+			this.comentarioPadre = PADRE;
 		}	
 	}
 

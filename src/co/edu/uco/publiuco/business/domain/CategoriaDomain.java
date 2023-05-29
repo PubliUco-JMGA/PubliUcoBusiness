@@ -15,11 +15,12 @@ public final class CategoriaDomain {
     private String descripcion;
     private EstadoDomain estado;
     public static final CategoriaDomain DEFAULT_OBJECT = new CategoriaDomain();
-    private static final CategoriaDomain PADRE = new CategoriaDomain(UtilUUID.generateNewUUID(), null, "Padre", UtilText.getDefaultValue(), EstadoDomain.getDefaultObject(), UtilBoolean.getDefaultValue());
+    private static final String UUID_CATEGORIA_RAIZ = ""; 
+
+    private static final CategoriaDomain PADRE = new CategoriaDomain(UtilUUID.generateUUIDFromString(UUID_CATEGORIA_RAIZ), null, "Padre", UtilText.getDefaultValue(), EstadoDomain.getDefaultObject(), UtilBoolean.getDefaultValue());
 
 
     private CategoriaDomain() {
-        super();
         setIdentificador(UtilUUID.getDefaultValue());
         setCategoriaPadre(PADRE);
         setNombre(UtilText.getDefaultValue());
@@ -29,7 +30,6 @@ public final class CategoriaDomain {
     }
 
     public CategoriaDomain(UUID identificador, CategoriaDomain categoriaPadre, String nombre, String descripcion, EstadoDomain estado,boolean tienePadre) {
-        super();
         setIdentificador(identificador);
         setCategoriaPadre(categoriaPadre);
         setNombre(nombre);
@@ -39,7 +39,7 @@ public final class CategoriaDomain {
     }
 
     
-    public boolean tienePadre() {
+    public boolean isTienePadre() {
 		return tienePadre;
 	}
 
@@ -72,10 +72,10 @@ public final class CategoriaDomain {
      }
 
     private void setCategoriaPadre(final CategoriaDomain categoriaPadre) {
-    	if(tienePadre()) {
+    	if(isTienePadre()) {
             this.categoriaPadre = UtilObject.getDefault(categoriaPadre, getDefaultObject());
         }else {
-			this.categoriaPadre = (CategoriaDomain) UtilObject.getNullValue();
+			this.categoriaPadre = PADRE;
         } 
     }
 

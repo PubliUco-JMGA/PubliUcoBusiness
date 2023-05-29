@@ -52,12 +52,13 @@ public final class CategoriaFacadeImpl implements CategoriaFacade {
     @Override
     public List<CategoriaDTO> list(CategoriaDTO dto) {
         try {
-            daoFactory.initTransaction();
-            final CategoriaDomain domain = CategoriaAssembler.getInstance().toDomainFromDTO(dto);
-
-            List<CategoriaDomain> lista = business.list(domain);
-
-            return CategoriaAssembler.getInstance().toDTOFromDomainList(lista);
+        	daoFactory.initTransaction();
+			final CategoriaDomain domainList = CategoriaAssembler.getInstance().toDomainFromDTO(dto);
+			
+			List<CategoriaDomain> lista = business.list(domainList); 			
+			daoFactory.commitTransaction();
+			
+			return CategoriaAssembler.getInstance().toDTOFromDomainList(lista);
 
 
         } catch (final PubliucoException exception) {

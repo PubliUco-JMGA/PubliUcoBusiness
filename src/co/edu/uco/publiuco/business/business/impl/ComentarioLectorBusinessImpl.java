@@ -20,7 +20,7 @@ public class ComentarioLectorBusinessImpl implements ComentarioLectorBusiness {
 
 	@Override
 	public void register(ComentarioLectorDomain domain) {
-		UUID identificador;
+		/*UUID identificador;
 		ComentarioLectorEntity entityTmp;
 		 List<ComentarioLectorEntity> result;
 		
@@ -31,8 +31,8 @@ public class ComentarioLectorBusinessImpl implements ComentarioLectorBusiness {
 		}while(!result.isEmpty());
 		
 		final var domainToCreate = new ComentarioLectorDomain(identificador,domain.getLector(),domain.getPublicacion(),domain.getComentarioPadre(),domain.getCotenido(),domain.getFechaComentario(),domain.getEstado(), domain.tienePadre());
-		
-		final ComentarioLectorEntity entity = ComentarioLectorAssembler.getInstance().toEntityFromDomain(domainToCreate);
+		*/
+		final ComentarioLectorEntity entity = ComentarioLectorAssembler.getInstance().toEntityFromDomain(domain);
 		daoFactory.getComentarioLectorDAO().create(entity);	
 
 	}
